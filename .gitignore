@@ -8,3 +8,7 @@ target
 .classpath
 .project
 
+/migration/26_to_42_migration/data/nuxeodump20151007.sql
+/migration/26_to_42_migration/data/cspacedump20151007.sql
+/migration/26_to_42_migration/test.sql
+/migration/26_to_42_migration/*.out
