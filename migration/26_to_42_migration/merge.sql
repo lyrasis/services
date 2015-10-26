@@ -137,50 +137,50 @@ ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS cataloguer; * Possibly u
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS comments; * Possibly unused by v2.6 MMI
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS dateofcataloging; * * Possibly unused by v2.6 MMI
 
-*** Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(format) vocabulary
+-- Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(format) vocabulary
 DROP TABLE IF EXISTS collectionobjects_mmi_formats;
 ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS item;
 ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS pos;
 
-*** Part of the v4.2 CollectionObjectTenant42 doctype. Seems to be just a multi-valued string field.
+-- Part of the v4.2 CollectionObjectTenant42 doctype. Seems to be just a multi-valued string field.
 DROP TABLE IF EXISTS collectionobjects_mmi_mmiinscriptioncontents;
 ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS item;
 ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS pos;
 
-*** Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(material) vocabulary
+-- Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(material) vocabulary
 DROP TABLE IF EXISTS collectionobjects_mmi_mmimaterials;
 ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS item;
 ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS pos;
 
-*** Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(technique) vocabulary
+-- Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(technique) vocabulary
 DROP TABLE IF EXISTS collectionobjects_mmi_mmitechniques;
 ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS item;
 ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS pos;
 
-*** objprodentitygroup this is part of collectionobjects_mmi:objProdEntityList of objProdEntityGroup
-*** Part of the CollectionObjectTenant42 document type
-*** References urn:cspace:movingimage.us:personauthorities:name(person) authority
-*** References urn:cspace:movingimage.us:vocabularies:name(productionrole) vocabulary
+-- 'objprodentitygroup' this is part of collectionobjects_mmi:objProdEntityList of objProdEntityGroup
+-- Part of the CollectionObjectTenant42 document type
+-- **References urn:cspace:movingimage.us:personauthorities:name(person) authority
+-- **References urn:cspace:movingimage.us:vocabularies:name(productionrole) vocabulary
 DROP TABLE IF EXISTS objprodentitygroup;
 ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS id;
 ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentity;
 ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentitynote;
 ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentityrole;
 
-*** contententitygroup is part of collectionobjects_mmi:contentEntityList of contentEntityGroup
-*** Part of the CollectionObjectTenant42 document type
-*** This v2.6 table maps to the v4.2 table "contententitiesgroup"
+-- 'contententitygroup' is part of collectionobjects_mmi:contentEntityList of contentEntityGroup
+-- Part of the CollectionObjectTenant42 document type
+-- **This v2.6 table maps to the v4.2 table "contententitiesgroup"
 DROP TABLE IF EXISTS contententitygroup;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententity;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententitynote;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententitytype;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS id;
 
-*** Exists in both v2.6 and v4.2, but unused in MMI v2.6
+-- Exists in both v2.6 and v4.2, but unused in MMI v2.6
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldcollectiondateearliest;
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldcollectiondatelatest;
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldloccoordinatesystem;
@@ -227,7 +227,7 @@ ALTER TABLE concepts_fineart ADD COLUMN conceptremarks character varying(1024);
 ALTER TABLE concepts_fineart ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE concepts_fineart ADD COLUMN othernameflags character varying(1024);
 
-*** Exists in both v2.6 and v4.2 schemas
+-- Exists in both v2.6 and v4.2 schemas
 ALTER TABLE concepttermgroup ADD COLUMN termformatteddisplayname character varying(1024);
 
 CREATE TABLE conditioncheckgroup();
@@ -304,7 +304,7 @@ ALTER TABLE exhibitions_common_sponsors ADD COLUMN id character varying(36) NOT 
 ALTER TABLE exhibitions_common_sponsors ADD COLUMN item character varying(1024);
 ALTER TABLE exhibitions_common_sponsors ADD COLUMN pos integer;
 
-*** Unused
+-- *** Unused
 DROP TABLE IF EXISTS fieldcolldepthgroup;
 ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS id;
 ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS maxdepth;
@@ -313,7 +313,7 @@ ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS notes;
 ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS qualifier;
 ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS units;
 
-*** Unused
+-- *** Unused
 DROP TABLE IF EXISTS fieldcollelevationgroup;
 ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS id;
 ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS maxelevation;
@@ -340,7 +340,7 @@ ALTER TABLE hazardgroup ADD COLUMN hazarddate timestamp without time zone;
 ALTER TABLE hazardgroup ADD COLUMN hazardnote character varying(1024);
 ALTER TABLE hazardgroup ADD COLUMN id character varying(36) NOT NULL;
 
-*** Exists in both v2.6 and v4.2 schemas
+-- Exists in both v2.6 and v4.2 schemas
 ALTER TABLE iptc ALTER COLUMN caption TYPE text;
 
 CREATE TABLE legalreqsheldgroup();
@@ -351,17 +351,17 @@ ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldenddate timestamp without
 ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldnumber character varying(1024);
 ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldrenewdate timestamp without time zone;
 
-*** Exists in both v2.6 and v4.2 schemas
+-- Exists in both v2.6 and v4.2 schemas
 ALTER TABLE media_mmi DROP COLUMN IF EXISTS mediastatus; => maps to "status" field
 ALTER TABLE media_mmi ADD COLUMN status character varying(1024);
 
-*** Unused
+-- *** Unused
 DROP TABLE IF EXISTS nh_titlegroup;
 ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS id;
 ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS item;
 ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS pos;
 
-*** Unused
+-- *** Unused
 DROP TABLE IF EXISTS notes_common;
 ALTER TABLE notes_common DROP COLUMN IF EXISTS author;
 ALTER TABLE notes_common DROP COLUMN IF EXISTS content;
@@ -372,26 +372,26 @@ ALTER TABLE nxp_uidseq ADD COLUMN seq_id integer NOT NULL;
 ALTER TABLE nxp_uidseq ADD COLUMN seq_index integer NOT NULL;
 ALTER TABLE nxp_uidseq ADD COLUMN seq_key character varying(255) NOT NULL;
 
-*** Exists in both v2.6 and v4.2 schemas
+-- Exists in both v2.6 and v4.2 schemas
 ALTER TABLE persons_common DROP COLUMN IF EXISTS description;
 
-*** Exists in both v2.6 and v4.2
-*** Part of the PersonTenant42 documenttype
+-- Exists in both v2.6 and v4.2
+-- Part of the PersonTenant42 documenttype
 ALTER TABLE persons_mmi DROP COLUMN IF EXISTS lifespan;
 
-*** This is part of the Person document type (table contents identical to v2.6 persons_mmi_orgfunctions)
+-- This is part of the Person document type (table contents identical to v2.6 persons_mmi_orgfunctions)
 DROP TABLE IF EXISTS persons_mmi_orgcontactnames;
 ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS id;
 ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS item;
 ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS pos;
 
-*** This is part of the Person document type (table contents identical to v2.6 persons_mmi_orgcontactnames)
+-- This is part of the Person document type (table contents identical to v2.6 persons_mmi_orgcontactnames)
 DROP TABLE IF EXISTS persons_mmi_orgfunctions;
 ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS id;
 ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS item;
 ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS pos;
 
-*** Not needed
+-- Not used my MMI needed
 ALTER TABLE persons_naturalhistory DROP COLUMN IF EXISTS lifespan;
 ALTER TABLE persons_naturalhistory DROP COLUMN IF EXISTS namesource;
 ALTER TABLE persons_naturalhistory DROP COLUMN IF EXISTS scopenote;
@@ -406,7 +406,7 @@ ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS id;
 ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS item;
 ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS pos;
 
-*** Exists in both v2.6 and v4.2 DB schemas
+-- Exists in both v2.6 and v4.2 DB schemas
 ALTER TABLE picture ALTER COLUMN caption TYPE text;
 
 CREATE TABLE publicitems_common();
@@ -441,7 +441,7 @@ ALTER TABLE relatedconceptsgroup ADD COLUMN conceptrelationtype character varyin
 ALTER TABLE relatedconceptsgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE relatedconceptsgroup ADD COLUMN relatedconcept character varying(1024);
 
-*** Exists in both v2.6 and v4.2 schemas
+-- Exists in both v2.6 and v4.2 schemas
 ALTER TABLE relatedtextresource ALTER COLUMN relatedtext TYPE text;
 
 CREATE TABLE salvageprioritycodegroup();
@@ -470,7 +470,7 @@ ALTER TABLE technicalchangesgroup ADD COLUMN technicalchange character varying(1
 ALTER TABLE technicalchangesgroup ADD COLUMN technicalchangenote character varying(1024);
 ALTER TABLE technicalchangesgroup ADD COLUMN technicalchangereason character varying(1024);
 
-*** Unused and can be dropped
+-- Unused and can be dropped
 DROP TABLE IF EXISTS typespecimengroup;
 ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS id;
 ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS institution;
@@ -526,20 +526,20 @@ ALTER TABLE workinggroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE workinggroup ADD COLUMN workinggroupnote character varying(1024);
 ALTER TABLE workinggroup ADD COLUMN workinggrouptitle character varying(1024);
 
-*** works_common exists in both v2.6 and v4.2 schemas
-*** Ideally, this schema/table would not be modified by a deployer.  Move data to new v4.2 "works_mmi" schema
-*** References the urn:cspace:movingimage.us:workauthorities:name(work) authority
-ALTER TABLE works_common DROP COLUMN IF EXISTS genre; * Doesn't appear to be used in v2.6 MMI data
-ALTER TABLE works_common DROP COLUMN IF EXISTS medium; * References the urn:cspace:movingimage.us:vocabularies:name(workmedium) vocabulary
-ALTER TABLE works_common DROP COLUMN IF EXISTS scopenote; * Doesn't appear to be used in v2.6 MMI data
+-- 'works_common' exists in both v2.6 and v4.2 schemas
+-- **Ideally, this schema/table would not be modified by a deployer.  Move data to new v4.2 "works_mmi" schema
+-- **References the urn:cspace:movingimage.us:workauthorities:name(work) authority
+ALTER TABLE works_common DROP COLUMN IF EXISTS genre; -- *Doesn't appear to be used in v2.6 MMI data
+ALTER TABLE works_common DROP COLUMN IF EXISTS medium; -- *References the urn:cspace:movingimage.us:vocabularies:name(workmedium) vocabulary
+ALTER TABLE works_common DROP COLUMN IF EXISTS scopenote; -- *Doesn't appear to be used in v2.6 MMI data
 ALTER TABLE works_common ADD COLUMN workhistorynote character varying(1024);
 ALTER TABLE works_common ADD COLUMN worktype character varying(1024);
 
-*** Need to migrate v2.6 data from "works_common" to this table.
+-- Need to migrate v2.6 data from "works_common" to this table.
 CREATE TABLE works_mmi();
 ALTER TABLE works_mmi ADD COLUMN genre character varying(1024);
 ALTER TABLE works_mmi ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE works_mmi ADD COLUMN medium character varying(1024);
 
-*** Exists in both v2.6 and v4.2 database schemas
+-- Exists in both v2.6 and v4.2 database schemas
 ALTER TABLE worktermgroup ADD COLUMN termformatteddisplayname character varying(1024);
