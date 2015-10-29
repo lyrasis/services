@@ -1,0 +1,2070 @@
+-- db1: {mmi_mmi42 localhost 5432 csadmin cs1dn3b sslmode=disable}
+-- db2: {mmi26_default localhost 5432 csadmin cs1dn3b sslmode=disable}
+-- Run the following SQL againt db2:
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitionfunding ALTER COLUMN acquisitionfundingcurrency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitionfunding ALTER COLUMN acquisitionfundingsource TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitionfunding ALTER COLUMN acquisitionfundingsourceprovisos TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN acquisitionauthorizer TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN acquisitionmethod TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN acquisitionnote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN acquisitionprovisos TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN acquisitionreason TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN acquisitionreferencenumber TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN creditline TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN grouppurchasepricecurrency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN objectofferpricecurrency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN objectpurchaseofferpricecurrency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN objectpurchasepricecurrency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN originalobjectpurchasepricecurrency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common ALTER COLUMN transferoftitlenumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common_acquisitionsources ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common_fieldcollectioneventnames ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE acquisitions_common_owners ALTER COLUMN item TYPE character varying(1024);
+ALTER TABLE acquisitions_mmi ADD COLUMN accessiondate timestamp without time zone;
+ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS acquisitionextent;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE acquisitions_mmi ADD COLUMN extent character varying(1024);
+ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS mmiaccessiondate;
+ALTER TABLE acquisitions_mmi_mmiacquisitiondates DROP COLUMN IF EXISTS id;
+ALTER TABLE acquisitions_mmi_mmiacquisitiondates DROP COLUMN IF EXISTS item;
+ALTER TABLE acquisitions_mmi_mmiacquisitiondates DROP COLUMN IF EXISTS pos;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE additionalsourcegroup ALTER COLUMN additionalsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE additionalsourcegroup ALTER COLUMN additionalsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE additionalsourcegroup ALTER COLUMN additionalsourceid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE additionalsourcegroup ALTER COLUMN additionalsourcenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE addressgroup ALTER COLUMN addresscountry TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE addressgroup ALTER COLUMN addressmunicipality TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE addressgroup ALTER COLUMN addressplace1 TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE addressgroup ALTER COLUMN addressplace2 TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE addressgroup ALTER COLUMN addresspostcode TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE addressgroup ALTER COLUMN addressstateorprovince TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE addressgroup ALTER COLUMN addresstype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE affiliatedentitygroup ADD COLUMN affiliatedentity character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE affiliatedentitygroup ADD COLUMN affiliatedentitytype character varying(1024);
+ALTER TABLE affiliatedentitygroup ADD COLUMN id character varying(36) NOT NULL;
+ALTER TABLE affiliatedpersonorggroup DROP COLUMN IF EXISTS affiliatedpersonorg;
+ALTER TABLE affiliatedpersonorggroup DROP COLUMN IF EXISTS affiliatedpersonorgtype;
+ALTER TABLE affiliatedpersonorggroup DROP COLUMN IF EXISTS id;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocactivitygroup ALTER COLUMN assocactivity TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocactivitygroup ALTER COLUMN assocactivitynote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocactivitygroup ALTER COLUMN assocactivitytype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocconceptgroup ALTER COLUMN assocconcept TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocconceptgroup ALTER COLUMN assocconceptnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocconceptgroup ALTER COLUMN assocconcepttype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocculturalcontextgroup ALTER COLUMN assocculturalcontext TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocculturalcontextgroup ALTER COLUMN assocculturalcontextnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocculturalcontextgroup ALTER COLUMN assocculturalcontexttype TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocdategroup ALTER COLUMN assocdatenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocdategroup ALTER COLUMN assocdatetype TYPE character varying(1024);
+ALTER TABLE associatedtaxagroup DROP COLUMN IF EXISTS commonname;
+ALTER TABLE associatedtaxagroup DROP COLUMN IF EXISTS id;
+ALTER TABLE associatedtaxagroup DROP COLUMN IF EXISTS interaction;
+ALTER TABLE associatedtaxagroup DROP COLUMN IF EXISTS taxon;
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocobjectgroup ALTER COLUMN assocobject TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocobjectgroup ALTER COLUMN assocobjectnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocobjectgroup ALTER COLUMN assocobjecttype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocorganizationgroup ALTER COLUMN assocorganization TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocorganizationgroup ALTER COLUMN assocorganizationnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocorganizationgroup ALTER COLUMN assocorganizationtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocpeoplegroup ALTER COLUMN assocpeople TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocpeoplegroup ALTER COLUMN assocpeoplenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocpeoplegroup ALTER COLUMN assocpeopletype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocpersongroup ALTER COLUMN assocperson TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocpersongroup ALTER COLUMN assocpersonnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocpersongroup ALTER COLUMN assocpersontype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocplacegroup ALTER COLUMN assocplace TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocplacegroup ALTER COLUMN assocplacenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE assocplacegroup ALTER COLUMN assocplacetype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE batch_common ALTER COLUMN classname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE batch_common ALTER COLUMN name TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE batch_common ALTER COLUMN notes TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE batch_common_fordoctypes ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE blobs_common ALTER COLUMN data TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE blobs_common ALTER COLUMN digest TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE blobs_common ALTER COLUMN encoding TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE blobs_common ALTER COLUMN length TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE blobs_common ALTER COLUMN mimetype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE blobs_common ALTER COLUMN name TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE blobs_common ALTER COLUMN repositoryid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE blobs_common ALTER COLUMN uri TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationagentinfogroup ADD COLUMN agent character varying(1024);
+ALTER TABLE citationagentinfogroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationagentinfogroup ADD COLUMN note character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationagentinfogroup ADD COLUMN role character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationauthorities_common ADD COLUMN description character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationauthorities_common ADD COLUMN displayname character varying(1024);
+ALTER TABLE citationauthorities_common ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationauthorities_common ADD COLUMN refname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationauthorities_common ADD COLUMN shortidentifier character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationauthorities_common ADD COLUMN source character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationauthorities_common ADD COLUMN vocabtype character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE citationgroup ALTER COLUMN citationsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE citationgroup ALTER COLUMN citationsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationpublicationinfogroup ADD COLUMN edition character varying(1024);
+ALTER TABLE citationpublicationinfogroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationpublicationinfogroup ADD COLUMN pages character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationpublicationinfogroup ADD COLUMN publicationplace character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationpublicationinfogroup ADD COLUMN publisher character varying(1024);
+ALTER TABLE citationrelatedtermsgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationrelatedtermsgroup ADD COLUMN relatedterm character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationrelatedtermsgroup ADD COLUMN relationtype character varying(1024);
+ALTER TABLE citationresourceidentgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationresourceidentgroup ADD COLUMN resourceident character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationresourceidentgroup ADD COLUMN type character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citations_common ADD COLUMN citationnote character varying(1024);
+ALTER TABLE citations_common ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citations_common ADD COLUMN inauthority character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citations_common ADD COLUMN refname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citations_common ADD COLUMN shortidentifier character varying(1024);
+ALTER TABLE citationtermgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termdisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termfullcitation character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termissue character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termlanguage character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termname character varying(1024);
+ALTER TABLE citationtermgroup ADD COLUMN termprefforlang boolean;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termqualifier character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termsectiontitle character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termsource character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termsourcedetail character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termsourceid character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termsourcenote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termstatus character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termsubtitle character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termtitle character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termtype character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE citationtermgroup ADD COLUMN termvolume character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN agequalifier TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ageunit TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN assoceventname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN assoceventnametype TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN assoceventnote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN collection TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_common ADD COLUMN computedcurrentlocation character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN contentdescription TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN contentnote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN copynumber TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN distinguishingfeatures TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN editionnumber TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN fieldcollectionnote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN fieldcollectionnumber TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN fieldcollectionplace TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN objecthistorynote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN objectnumber TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN objectproductionnote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownerscontributionnote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownershipaccess TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownershipcategory TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownershipexchangemethod TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownershipexchangenote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownershipexchangepricecurrency TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownershipplace TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownerspersonalexperience TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN ownerspersonalresponse TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN phase TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN physicaldescription TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN recordstatus TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN sex TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN viewerscontributionnote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN viewerspersonalexperience TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN viewerspersonalresponse TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common ALTER COLUMN viewersrole TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_assoceventorganizations ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_assoceventpeoples ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_assoceventpersons ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_assoceventplaces ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_briefdescriptions ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_colors ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_comments ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentactivities ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentconcepts ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentlanguages ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentorganizations ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentpeoples ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentpersons ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentplaces ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentpositions ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_contentscripts ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_fieldcoleventnames ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_fieldcollectionmethods ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_fieldcollectionsources ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_fieldcollectors ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_forms ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_objectproductionreasons ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_objectstatuslist ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_owners ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_ownersreferences ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_responsibledepartments ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_styles ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_common_viewersreferences ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_fineart ADD COLUMN cataloglevel character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_fineart ADD COLUMN creatordescription character varying(1024);
+ALTER TABLE collectionobjects_fineart ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_fineart ADD COLUMN materialtechniquedescription character varying(1024);
+ALTER TABLE collectionobjects_mmi ADD COLUMN additionalresearch boolean;
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS additionalresearchrequired;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_mmi ALTER COLUMN administrativeremarks TYPE character varying(1024);
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS approvedbycurator;
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS artifactclass;
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS caption;
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS cataloguer;
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS comments;
+ALTER TABLE collectionobjects_mmi ADD COLUMN curatorapproved boolean;
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS dateofcataloging;
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS historicalnotesources;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_mmi ADD COLUMN historynotesources character varying(1024);
+ALTER TABLE collectionobjects_mmi ADD COLUMN initialcataloging boolean;
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS initialcatalogingcompleted;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_mmi ADD COLUMN objectproductionentitynote character varying(1024);
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS objecttitle;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_mmi ALTER COLUMN provenance TYPE character varying(1024);
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS worktype;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_mmi_copyrightstatements ALTER COLUMN item TYPE character varying(1024);
+ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS id;
+ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS item;
+ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS pos;
+ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS id;
+ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS item;
+ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS pos;
+ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS id;
+ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS item;
+ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS pos;
+ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS id;
+ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS item;
+ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS pos;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldcollectiondateearliest;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldcollectiondatelatest;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldloccoordinatesystem;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldloccountry;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldloccounty;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldlocelevation;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldlocgeodeticdatum;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldlochighergeography;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldloclatdecimal;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldloclongdecimal;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldlocstate;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionobjects_naturalhistory ALTER COLUMN fieldlocverbatim TYPE character varying(1024);
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS labelfooter;
+ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS labelheader;
+ALTER TABLE collectionobjects_variablemedia ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_variablemedia ADD COLUMN nonstandardcode character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_variablemedia ADD COLUMN sourceexternaldata character varying(1024);
+ALTER TABLE collectionobjects_variablemedia_compressionsystems ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_variablemedia_compressionsystems ADD COLUMN item character varying(1024);
+ALTER TABLE collectionobjects_variablemedia_compressionsystems ADD COLUMN pos integer;
+ALTER TABLE collectionobjects_variablemedia_copiesprovided ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_variablemedia_copiesprovided ADD COLUMN item character varying(1024);
+ALTER TABLE collectionobjects_variablemedia_copiesprovided ADD COLUMN pos integer;
+ALTER TABLE collectionobjects_variablemedia_creationhardwares ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_variablemedia_creationhardwares ADD COLUMN item character varying(1024);
+ALTER TABLE collectionobjects_variablemedia_creationhardwares ADD COLUMN pos integer;
+ALTER TABLE collectionobjects_variablemedia_playbackhardwares ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_variablemedia_playbackhardwares ADD COLUMN item character varying(1024);
+ALTER TABLE collectionobjects_variablemedia_playbackhardwares ADD COLUMN pos integer;
+ALTER TABLE collectionobjects_variablemedia_ratioformats ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionobjects_variablemedia_ratioformats ADD COLUMN item character varying(1024);
+ALTER TABLE collectionobjects_variablemedia_ratioformats ADD COLUMN pos integer;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionspace_core ALTER COLUMN createdby TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE collectionspace_core ADD COLUMN refname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionspace_core ALTER COLUMN tenantid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionspace_core ALTER COLUMN updatedby TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE collectionspace_core ALTER COLUMN uri TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE common ALTER COLUMN icon TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE common ALTER COLUMN icon-expanded TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE commonnamegroup ALTER COLUMN commonname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE commonnamegroup ALTER COLUMN commonnamelanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE commonnamegroup ALTER COLUMN commonnamesource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE commonnamegroup ALTER COLUMN commonnamesourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE completenessgroup ADD COLUMN completeness character varying(1024);
+ALTER TABLE completenessgroup ADD COLUMN completenessdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE completenessgroup ADD COLUMN completenessnote character varying(1024);
+ALTER TABLE completenessgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE conceptauthorities_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE conceptauthorities_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE conceptauthorities_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE conceptauthorities_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE conceptauthorities_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE conceptauthorities_common ALTER COLUMN vocabtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepts_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepts_common ALTER COLUMN inauthority TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepts_common ALTER COLUMN recordtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepts_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepts_common ALTER COLUMN scopenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepts_common ALTER COLUMN scopenotesource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepts_common ALTER COLUMN scopenotesourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepts_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE concepts_fineart ADD COLUMN conceptrecordtype character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE concepts_fineart ADD COLUMN conceptremarks character varying(1024);
+ALTER TABLE concepts_fineart ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE concepts_fineart ADD COLUMN othernameflags character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN historicalstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termdisplayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE concepttermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termlanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termsourceid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termsourcenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE concepttermgroup ALTER COLUMN termtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditioncheckgroup ADD COLUMN condition character varying(1024);
+ALTER TABLE conditioncheckgroup ADD COLUMN conditiondate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditioncheckgroup ADD COLUMN conditionnote character varying(1024);
+ALTER TABLE conditioncheckgroup ADD COLUMN id character varying(36) NOT NULL;
+ALTER TABLE conditionchecks_common ADD COLUMN conditioncheckassessmentdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN conditionchecker character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN conditioncheckmethod character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN conditionchecknote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN conditioncheckreason character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN conditioncheckrefnumber character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN conservationtreatmentpriority character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN displayrecommendations character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN envrecommendations character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN handlingrecommendations character varying(1024);
+ALTER TABLE conditionchecks_common ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN legalrequirements character varying(1024);
+ALTER TABLE conditionchecks_common ADD COLUMN nextconditioncheckdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN objectauditcategory character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN packingrecommendations character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN securityrecommendations character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN specialrequirements character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE conditionchecks_common ADD COLUMN storagerequirements character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE conditiongroup ALTER COLUMN conditionnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contacts_common ALTER COLUMN csid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contacts_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contacts_common ALTER COLUMN inauthority TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contacts_common ALTER COLUMN initem TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE content ALTER COLUMN digest TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE content ALTER COLUMN encoding TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE content ALTER COLUMN mime-type TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE content ALTER COLUMN name TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE content_roots ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE contententitiesgroup ADD COLUMN contententity character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE contententitiesgroup ADD COLUMN contententitynote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE contententitiesgroup ADD COLUMN contententitytype character varying(1024);
+ALTER TABLE contententitiesgroup ADD COLUMN id character varying(36) NOT NULL;
+ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententity;
+ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententitynote;
+ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententitytype;
+ALTER TABLE contententitygroup DROP COLUMN IF EXISTS id;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contenteventnamegroup ALTER COLUMN contenteventname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contenteventnamegroup ALTER COLUMN contenteventnametype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contentobjectgroup ALTER COLUMN contentobject TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contentobjectgroup ALTER COLUMN contentobjecttype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contentothergroup ALTER COLUMN contentother TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contentothergroup ALTER COLUMN contentothertype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contentworkgroup ALTER COLUMN contentwork TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contentworkgroup ALTER COLUMN contentworknote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE contentworkgroup ALTER COLUMN contentworktype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE contentworksgroup ADD COLUMN contentwork character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE contentworksgroup ADD COLUMN contentworknote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE contentworksgroup ADD COLUMN contentworktype character varying(1024);
+ALTER TABLE contentworksgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE creatorgroup ALTER COLUMN creator TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE creatorgroup ALTER COLUMN creatortype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE currentlocationgroup ALTER COLUMN currentlocation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE currentlocationgroup ALTER COLUMN currentlocationfitness TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE currentlocationgroup ALTER COLUMN currentlocationnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN dateassociation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN datedisplaydate TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN dateearliestsinglecertainty TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN dateearliestsingleera TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN dateearliestsinglequalifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN dateearliestsinglequalifierunit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN datelatestcertainty TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN datelatestera TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN datelatestqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN datelatestqualifierunit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN datenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dategroup ALTER COLUMN dateperiod TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dc_contributors ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dc_subjects ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE digitalworksgroup ADD COLUMN authoringenvironment character varying(1024);
+ALTER TABLE digitalworksgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE digitalworksgroup ADD COLUMN programminglanguage character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensions_common ALTER COLUMN dimension TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensions_common ALTER COLUMN dimensionnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensions_common ALTER COLUMN measuredby TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensions_common ALTER COLUMN measuredpart TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensions_common ALTER COLUMN measurementmethod TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensions_common ALTER COLUMN measurementunit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensions_common ALTER COLUMN valuedate TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensions_common ALTER COLUMN valuequalifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensionsubgroup ALTER COLUMN dimension TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensionsubgroup ALTER COLUMN dimensionnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensionsubgroup ALTER COLUMN measuredby TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensionsubgroup ALTER COLUMN measurementmethod TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensionsubgroup ALTER COLUMN measurementunit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dimensionsubgroup ALTER COLUMN valuequalifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN coverage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN creator TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN format TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN language TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN lastcontributor TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN nature TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN publisher TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN rights TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE dublincore ALTER COLUMN title TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE emailgroup ALTER COLUMN email TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE emailgroup ALTER COLUMN emailtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE envconditionnotegroup ADD COLUMN envconditionnote character varying(1024);
+ALTER TABLE envconditionnotegroup ADD COLUMN envconditionnotedate timestamp without time zone;
+ALTER TABLE envconditionnotegroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectcase character varying(1024);
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectconscheckdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectconstreatment character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectmount character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectnote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectnumber character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectrotation character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectsection character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionobjectgroup ADD COLUMN exhibitionobjectseqnum character varying(1024);
+ALTER TABLE exhibitionobjectgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionpersongroup ADD COLUMN exhibitionperson character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionpersongroup ADD COLUMN exhibitionpersonrole character varying(1024);
+ALTER TABLE exhibitionpersongroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionreferencegroup ADD COLUMN exhibitionreference character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionreferencegroup ADD COLUMN exhibitionreferencenote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionreferencegroup ADD COLUMN exhibitionreferencetype character varying(1024);
+ALTER TABLE exhibitionreferencegroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common ADD COLUMN boilerplatetext character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common ADD COLUMN curatorialnote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common ADD COLUMN exhibitionnumber character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common ADD COLUMN generalnote character varying(1024);
+ALTER TABLE exhibitions_common ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common ADD COLUMN planningnote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common ADD COLUMN title character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common ADD COLUMN type character varying(1024);
+ALTER TABLE exhibitions_common_organizers ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common_organizers ADD COLUMN item character varying(1024);
+ALTER TABLE exhibitions_common_organizers ADD COLUMN pos integer;
+ALTER TABLE exhibitions_common_sponsors ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitions_common_sponsors ADD COLUMN item character varying(1024);
+ALTER TABLE exhibitions_common_sponsors ADD COLUMN pos integer;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionsectiongroup ADD COLUMN exhibitionsectionlocation character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionsectiongroup ADD COLUMN exhibitionsectionname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionsectiongroup ADD COLUMN exhibitionsectionnote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionsectiongroup ADD COLUMN exhibitionsectionobjects character varying(1024);
+ALTER TABLE exhibitionsectiongroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionstatusgroup ADD COLUMN exhibitionstatus character varying(1024);
+ALTER TABLE exhibitionstatusgroup ADD COLUMN exhibitionstatusdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE exhibitionstatusgroup ADD COLUMN exhibitionstatusnote character varying(1024);
+ALTER TABLE exhibitionstatusgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE faxnumbergroup ALTER COLUMN faxnumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE faxnumbergroup ALTER COLUMN faxnumbertype TYPE character varying(1024);
+ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS id;
+ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS maxdepth;
+ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS mindepth;
+ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS notes;
+ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS qualifier;
+ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS units;
+ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS id;
+ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS maxelevation;
+ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS minelevation;
+ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS notes;
+ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS qualifier;
+ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS units;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE file ALTER COLUMN filename TYPE character varying(1024);
+ALTER TABLE filmvideocomponentsgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE filmvideocomponentsgroup ADD COLUMN originalaudioformat character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE filmvideocomponentsgroup ADD COLUMN originalformat character varying(1024);
+ALTER TABLE fulltext ADD COLUMN binarytext_description text;
+ALTER TABLE fulltext ADD COLUMN binarytext_title text;
+ALTER TABLE fulltext ADD COLUMN fulltext_description text;
+ALTER TABLE fulltext ADD COLUMN fulltext_title text;
+ALTER TABLE fulltext ADD COLUMN simpletext_description text;
+ALTER TABLE fulltext ADD COLUMN simpletext_title text;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE galleryrotationgroup ADD COLUMN galleryrotationname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE galleryrotationgroup ADD COLUMN galleryrotationnote character varying(1024);
+ALTER TABLE galleryrotationgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE groups_common ALTER COLUMN owner TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE groups_common ALTER COLUMN responsibledepartment TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE groups_common ALTER COLUMN scopenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE groups_common ALTER COLUMN title TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE hazardgroup ADD COLUMN hazard character varying(1024);
+ALTER TABLE hazardgroup ADD COLUMN hazarddate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE hazardgroup ADD COLUMN hazardnote character varying(1024);
+ALTER TABLE hazardgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE hierarchy ALTER COLUMN name TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN color_space TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN copyright TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN equipment TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN exposure_time TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN icc_profile TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN image_description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN iso_speed_ratings TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN orientation TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN user_comment TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE image_metadata ALTER COLUMN white_balance TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE imports_common ALTER COLUMN importsfield TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE imports_common_params ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN conditionchecknote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN conditioncheckreferencenumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN currentowner TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN depositor TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN depositorsrequirements TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN entrynote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN entrynumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN entryreason TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN fieldcollectionnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN fieldcollectionnumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN fieldcollectionplace TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN insurancenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN insurancepolicynumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN insurancereferencenumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN normallocation TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN packingnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN valuationreferencenumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common ALTER COLUMN valuer TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_conditioncheckersorassessors ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_conditioncheckmethods ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_conditioncheckreasons ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_entrymethods ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_fieldcollectioneventnames ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_fieldcollectionmethods ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_fieldcollectionsources ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_fieldcollectors ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE intakes_common_insurers ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN by_line TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN by_line_title TYPE character varying(1024);
+-- WARNING: This type change may not work well: (character varying to text).
+ALTER TABLE iptc ALTER COLUMN caption TYPE text;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN category TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN city TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN copyright_notice TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN country_or_primary_location TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN credit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN keywords TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN language TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN object_name TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN original_transmission_ref TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN originating_program TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN province_or_state TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN record_version TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN release_time TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN special_instructions TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN supplemental_categories TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN time_created TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN urgency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE iptc ALTER COLUMN writer TYPE character varying(1024);
+ALTER TABLE legalreqsheldgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheld character varying(1024);
+ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldbegindate timestamp without time zone;
+ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldenddate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldnumber character varying(1024);
+ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldrenewdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE lendergroup ALTER COLUMN lender TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE lendergroup ALTER COLUMN lendersauthorizer TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE lendergroup ALTER COLUMN lenderscontact TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansin_common ALTER COLUMN borrowersauthorizer TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansin_common ALTER COLUMN borrowerscontact TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansin_common ALTER COLUMN loaninconditions TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansin_common ALTER COLUMN loaninnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansin_common ALTER COLUMN loaninnumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansin_common ALTER COLUMN loanpurpose TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN borrower TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN borrowersauthorizer TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN borrowerscontact TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN lendersauthorizer TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN lenderscontact TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN loanoutnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN loanoutnumber TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN loanpurpose TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loansout_common ALTER COLUMN specialconditionsofloan TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loanstatusgroup ALTER COLUMN loanstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loanstatusgroup ALTER COLUMN loanstatusnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locationauthorities_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locationauthorities_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locationauthorities_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locationauthorities_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locationauthorities_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locationauthorities_common ALTER COLUMN vocabtype TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locations_common ALTER COLUMN accessnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locations_common ALTER COLUMN address TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locations_common ALTER COLUMN inauthority TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locations_common ALTER COLUMN locationtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locations_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locations_common ALTER COLUMN securitynote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE locations_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termdisplayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE loctermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termlanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termsourceid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termsourcenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE loctermgroup ALTER COLUMN termtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE materialgroup ALTER COLUMN material TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE materialgroup ALTER COLUMN materialcomponent TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE materialgroup ALTER COLUMN materialcomponentnote TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE materialgroup ALTER COLUMN materialname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE materialgroup ALTER COLUMN materialsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE measuredpartgroup ALTER COLUMN dimensionsummary TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE measuredpartgroup ALTER COLUMN measuredpart TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN blobcsid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN contributor TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN copyrightstatement TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN coverage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN creator TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN datecreated TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN datemodified TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN externalurl TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN filename TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN format TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN identificationnumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN location TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN publisher TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN rightsholder TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN sourceurl TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN title TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common ALTER COLUMN uri TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common_languagelist ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common_relationlist ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common_subjectlist ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE media_common_typelist ALTER COLUMN item TYPE character varying(1024);
+ALTER TABLE media_mmi DROP COLUMN IF EXISTS mediastatus;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE media_mmi ADD COLUMN status character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE migratedentitygroup ALTER COLUMN migratedentity TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE migratedentitygroup ALTER COLUMN migratedentitytype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN currentlocation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN currentlocationfitness TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN currentlocationnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN frequencyforinventory TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN inventoryactionrequired TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN inventorynote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN movementcontact TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN movementnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN movementreferencenumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN normallocation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common ALTER COLUMN reasonformove TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common_inventorycontactlist ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE movements_common_movementmethods ALTER COLUMN item TYPE character varying(1024);
+ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS id;
+ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS item;
+ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS pos;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE nontextualinscriptiongroup ALTER COLUMN inscriptiondescription TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE nontextualinscriptiongroup ALTER COLUMN inscriptiondescriptioninscriber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE nontextualinscriptiongroup ALTER COLUMN inscriptiondescriptioninterpretation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE nontextualinscriptiongroup ALTER COLUMN inscriptiondescriptionmethod TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE nontextualinscriptiongroup ALTER COLUMN inscriptiondescriptionposition TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE nontextualinscriptiongroup ALTER COLUMN inscriptiondescriptiontype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE note ALTER COLUMN mime_type TYPE character varying(1024);
+ALTER TABLE notes_common DROP COLUMN IF EXISTS author;
+ALTER TABLE notes_common DROP COLUMN IF EXISTS content;
+ALTER TABLE notes_common DROP COLUMN IF EXISTS date;
+ALTER TABLE notes_common DROP COLUMN IF EXISTS id;
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectcomponentgroup ALTER COLUMN objectcomponentinformation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectcomponentgroup ALTER COLUMN objectcomponentname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectexit_common ALTER COLUMN currentowner TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectexit_common ALTER COLUMN depositor TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectexit_common ALTER COLUMN exitnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectexit_common ALTER COLUMN exitnumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectexit_common ALTER COLUMN exitreason TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectexit_common ALTER COLUMN packingnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectexit_common_exitmethods ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectnamegroup ALTER COLUMN objectname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectnamegroup ALTER COLUMN objectnamecurrency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectnamegroup ALTER COLUMN objectnamelanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectnamegroup ALTER COLUMN objectnamelevel TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectnamegroup ALTER COLUMN objectnamenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectnamegroup ALTER COLUMN objectnamesystem TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectnamegroup ALTER COLUMN objectnametype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectproductionorganizationgroup ALTER COLUMN objectproductionorganization TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectproductionorganizationgroup ALTER COLUMN objectproductionorganizationrole TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectproductionpeoplegroup ALTER COLUMN objectproductionpeople TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectproductionpeoplegroup ALTER COLUMN objectproductionpeoplerole TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectproductionpersongroup ALTER COLUMN objectproductionperson TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectproductionpersongroup ALTER COLUMN objectproductionpersonrole TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectproductionplacegroup ALTER COLUMN objectproductionplace TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE objectproductionplacegroup ALTER COLUMN objectproductionplacerole TYPE character varying(1024);
+ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS id;
+ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentity;
+ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentitynote;
+ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentityrole;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE organizations_common ALTER COLUMN foundingplace TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE organizations_common ALTER COLUMN inauthority TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE organizations_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE organizations_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE organizations_common_contactnames ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE organizations_common_functions ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE organizations_common_groups ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE organizations_common_historynotes ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgauthorities_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgauthorities_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgauthorities_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgauthorities_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgauthorities_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgauthorities_common ALTER COLUMN vocabtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN additionstoname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN mainbodyname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termdisplayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE orgtermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termlanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termsourceid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termsourcenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE orgtermgroup ALTER COLUMN termtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE othernumber ALTER COLUMN numbertype TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE othernumber ALTER COLUMN numbervalue TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE personauthorities_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE personauthorities_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE personauthorities_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE personauthorities_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE personauthorities_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE personauthorities_common ALTER COLUMN vocabtype TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common ALTER COLUMN bionote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common ALTER COLUMN birthplace TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common ALTER COLUMN deathplace TYPE character varying(1024);
+ALTER TABLE persons_common DROP COLUMN IF EXISTS description;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common ALTER COLUMN gender TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common ALTER COLUMN inauthority TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common ALTER COLUMN namenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common_groups ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common_nationalities ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common_occupations ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_common_schoolsorstyles ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE persons_mmi ADD COLUMN entitycontactname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE persons_mmi ADD COLUMN function character varying(1024);
+ALTER TABLE persons_mmi DROP COLUMN IF EXISTS lifespan;
+ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS id;
+ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS item;
+ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS pos;
+ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS id;
+ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS item;
+ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS pos;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persons_naturalhistory ALTER COLUMN entitytype TYPE character varying(1024);
+ALTER TABLE persons_naturalhistory DROP COLUMN IF EXISTS lifespan;
+ALTER TABLE persons_naturalhistory DROP COLUMN IF EXISTS namesource;
+ALTER TABLE persons_naturalhistory DROP COLUMN IF EXISTS scopenote;
+ALTER TABLE persons_naturalhistory DROP COLUMN IF EXISTS sourcenote;
+ALTER TABLE persons_naturalhistory_namefunctions DROP COLUMN IF EXISTS id;
+ALTER TABLE persons_naturalhistory_namefunctions DROP COLUMN IF EXISTS item;
+ALTER TABLE persons_naturalhistory_namefunctions DROP COLUMN IF EXISTS pos;
+ALTER TABLE persons_naturalhistory_nametypes DROP COLUMN IF EXISTS id;
+ALTER TABLE persons_naturalhistory_nametypes DROP COLUMN IF EXISTS item;
+ALTER TABLE persons_naturalhistory_nametypes DROP COLUMN IF EXISTS pos;
+ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS id;
+ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS item;
+ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS pos;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN forename TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN initials TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN middlename TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN nameadditions TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN salutation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN surname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termdisplayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE persontermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termlanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termsourceid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termsourcenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN termtype TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE persontermgroup ALTER COLUMN title TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE pictemplate ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE pictemplate ALTER COLUMN tag TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE pictemplate ALTER COLUMN title TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN byline TYPE character varying(1024);
+-- WARNING: This type change may not work well: (character varying to text).
+ALTER TABLE picture ALTER COLUMN caption TYPE text;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN credit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN cropcoords TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN dateline TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN genre TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN language TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN origin TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN slugline TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE picture ALTER COLUMN typage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placeauthorities_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placeauthorities_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placeauthorities_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placeauthorities_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placeauthorities_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placeauthorities_common ALTER COLUMN vocabtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN coordprecision TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN footprintspatialfit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN footprintsrs TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN footprintwkt TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN geodeticdatum TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN georeferencedby TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN georefplacename TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN georefprotocol TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN georefremarks TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN georefsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN georefverificationstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placegeorefgroup ALTER COLUMN pointradiusspatialfit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placeownergroup ALTER COLUMN owner TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placeownergroup ALTER COLUMN ownershipnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN inauthority TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN placeid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN placenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN placesource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN placetype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vcoordinates TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vcoordsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vcoordsourcerefid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vcoordsys TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vdepth TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vdistanceabovesurface TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN velevation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vlatitude TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vlongitude TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vspatialreferencesystem TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE places_common ALTER COLUMN vunitofmeasure TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN historicalstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN nameabbrev TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN namenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termdisplayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE placetermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termlanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termsourceid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termsourcenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE placetermgroup ALTER COLUMN termtype TYPE character varying(1024);
+ALTER TABLE publicitems_common ADD COLUMN contentaccesscountlimit bigint;
+ALTER TABLE publicitems_common ADD COLUMN contentaccessedcount bigint;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE publicitems_common ADD COLUMN contentcreationjobid character varying(1024);
+ALTER TABLE publicitems_common ADD COLUMN contentexpirationdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE publicitems_common ADD COLUMN contentid character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE publicitems_common ADD COLUMN contentname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE publicitems_common ADD COLUMN contentsource character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE publicitems_common ADD COLUMN contenturi character varying(1024);
+ALTER TABLE publicitems_common ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE publicitems_common ADD COLUMN itemnumber character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE publish_sections ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE publishergroup ALTER COLUMN publisher TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE publishergroup ALTER COLUMN publishertype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE referencegroup ALTER COLUMN reference TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE referencegroup ALTER COLUMN referencenote TYPE character varying(1024);
+ALTER TABLE registration ADD COLUMN accepted boolean;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE registration ADD COLUMN comment character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE registration ADD COLUMN copyto character varying(1024);
+ALTER TABLE registration ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE registration ADD COLUMN validationmethod character varying(1024);
+ALTER TABLE registrationconfiguration ADD COLUMN allowdirectvalidationforexistinguser boolean;
+ALTER TABLE registrationconfiguration ADD COLUMN allowusercreation boolean;
+ALTER TABLE registrationconfiguration ADD COLUMN displaylocalregistrationtab boolean;
+ALTER TABLE registrationconfiguration ADD COLUMN forcerightassignment boolean;
+ALTER TABLE registrationconfiguration ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE registrationconfiguration ADD COLUMN name character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE relatedconceptsgroup ADD COLUMN conceptrelationtype character varying(1024);
+ALTER TABLE relatedconceptsgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE relatedconceptsgroup ADD COLUMN relatedconcept character varying(1024);
+-- WARNING: This type change may not work well: (character varying to text).
+ALTER TABLE relatedtextresource ALTER COLUMN relatedtext TYPE text;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relatedtextresource ALTER COLUMN relatedtextid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN objectcsid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN objectdocumenttype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN objectrefname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN objecturi TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN predicate TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN predicatedisplayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE relations_common ADD COLUMN relationshipmetatype character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN relationshiptype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN subjectcsid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN subjectdocumenttype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN subjectrefname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE relations_common ALTER COLUMN subjecturi TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE reports_common ALTER COLUMN filename TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE reports_common ALTER COLUMN name TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE reports_common ALTER COLUMN notes TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE reports_common ALTER COLUMN outputmime TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE reports_common_fordoctypes ALTER COLUMN item TYPE character varying(1024);
+ALTER TABLE salvageprioritycodegroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE salvageprioritycodegroup ADD COLUMN salvageprioritycode character varying(1024);
+ALTER TABLE salvageprioritycodegroup ADD COLUMN salvageprioritycodedate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE status ADD COLUMN administrative_status character varying(1024);
+ALTER TABLE status ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE status ADD COLUMN instanceid character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE status ADD COLUMN serviceid character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE status ADD COLUMN statusmessage character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE status ADD COLUMN userlogin character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN dateassociation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN datedisplaydate TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN dateearliestsinglecertainty TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN dateearliestsingleera TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN dateearliestsinglequalifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN dateearliestsinglequalifierunit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN datelatestcertainty TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN datelatestera TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN datelatestqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN datelatestqualifierunit TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN datenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE structureddategroup ALTER COLUMN dateperiod TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE subitem ALTER COLUMN owner TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common ALTER COLUMN inauthority TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common ALTER COLUMN taxoncurrency TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common ALTER COLUMN taxonnote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common ALTER COLUMN taxonrank TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common ALTER COLUMN taxonyear TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxon_common_taxoncitationlist ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonauthorgroup ALTER COLUMN taxonauthor TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonauthorgroup ALTER COLUMN taxonauthortype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN identby TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN identdate TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN identkind TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN institution TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN notes TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN qualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN reference TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN refpage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomicidentgroup ALTER COLUMN taxon TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomyauthority_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomyauthority_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomyauthority_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomyauthority_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomyauthority_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxonomyauthority_common ALTER COLUMN vocabtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN taxonomicstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termdisplayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE taxontermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termlanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termsourceid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termsourcenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE taxontermgroup ALTER COLUMN termtype TYPE character varying(1024);
+ALTER TABLE techassessmentgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE techassessmentgroup ADD COLUMN techassessment character varying(1024);
+ALTER TABLE techassessmentgroup ADD COLUMN techassessmentdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE technicalattributegroup ALTER COLUMN technicalattribute TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE technicalattributegroup ALTER COLUMN technicalattributemeasurement TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE technicalattributegroup ALTER COLUMN technicalattributemeasurementunit TYPE character varying(1024);
+ALTER TABLE technicalchangesgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE technicalchangesgroup ADD COLUMN newsupport character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE technicalchangesgroup ADD COLUMN previoussupport character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE technicalchangesgroup ADD COLUMN technicalchange character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE technicalchangesgroup ADD COLUMN technicalchangenote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE technicalchangesgroup ADD COLUMN technicalchangereason character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE techniquegroup ALTER COLUMN technique TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE techniquegroup ALTER COLUMN techniquetype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE telephonenumbergroup ALTER COLUMN telephonenumber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE telephonenumbergroup ALTER COLUMN telephonenumbertype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontent TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontentinscriber TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontentinterpretation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontentlanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontentmethod TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontentposition TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontentscript TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontenttranslation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontenttransliteration TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE textualinscriptiongroup ALTER COLUMN inscriptioncontenttype TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE titlegroup ALTER COLUMN title TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE titlegroup ALTER COLUMN titlelanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE titlegroup ALTER COLUMN titletype TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE titletranslationsubgroup ALTER COLUMN titletranslation TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE titletranslationsubgroup ALTER COLUMN titletranslationlanguage TYPE character varying(1024);
+ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS id;
+ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS institution;
+ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS institutiontype;
+ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS kindoftype;
+ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS notes;
+ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS reference;
+ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS refpage;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE typetocv ALTER COLUMN contentview TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE typetocv ALTER COLUMN doctype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE ui_types_configuration ALTER COLUMN defaulttype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE uid ALTER COLUMN uid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE uitypesconf_allowedtypes ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE uitypesconf_deniedtypes ALTER COLUMN item TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE usagegroup ALTER COLUMN usage TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE usagegroup ALTER COLUMN usagenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE userinfo ADD COLUMN company character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE userinfo ADD COLUMN email character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE userinfo ADD COLUMN firstname character varying(1024);
+ALTER TABLE userinfo ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE userinfo ADD COLUMN lastname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE userinfo ADD COLUMN login character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE userinfo ADD COLUMN password character varying(1024);
+ALTER TABLE userinfo_groups ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE userinfo_groups ADD COLUMN item character varying(1024);
+ALTER TABLE userinfo_groups ADD COLUMN pos integer;
+ALTER TABLE valuationcontrols_common ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE valuationcontrols_common ADD COLUMN valuationcontrolrefnumber character varying(1024);
+ALTER TABLE valuationcontrols_common ADD COLUMN valuedate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE valuationcontrols_common ADD COLUMN valuenote character varying(1024);
+ALTER TABLE valuationcontrols_common ADD COLUMN valuerenewaldate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE valuationcontrols_common ADD COLUMN valuesource character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE valuationcontrols_common ADD COLUMN valuetype character varying(1024);
+ALTER TABLE valueamounts ADD COLUMN id character varying(36) NOT NULL;
+ALTER TABLE valueamounts ADD COLUMN valueamount double precision;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE valueamounts ADD COLUMN valuecurrency character varying(1024);
+ALTER TABLE venuegroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE venuegroup ADD COLUMN venue character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE venuegroup ADD COLUMN venueattendance character varying(1024);
+ALTER TABLE venuegroup ADD COLUMN venueclosingdate timestamp without time zone;
+ALTER TABLE venuegroup ADD COLUMN venueopeningdate timestamp without time zone;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE venuegroup ADD COLUMN venueurl character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE versions ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE view ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE view ALTER COLUMN filename TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE view ALTER COLUMN tag TYPE character varying(1024);
+-- WARNING: This type change may not work well: (text to character varying).
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE view ALTER COLUMN title TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE visualpreferencesgroup ADD COLUMN colorpalette character varying(1024);
+ALTER TABLE visualpreferencesgroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE visualpreferencesgroup ADD COLUMN screenresolution character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularies_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularies_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularies_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularies_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularies_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularies_common ALTER COLUMN vocabtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN inauthority TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN order TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN sourcepage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE vocabularyitems_common ALTER COLUMN termstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webaddressgroup ALTER COLUMN webaddress TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webaddressgroup ALTER COLUMN webaddresstype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN baseline TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN email TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN moderationtype TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN name TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN template TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN theme TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN themepage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN themeperspective TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE webcontainer ALTER COLUMN url TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE workauthorities_common ALTER COLUMN description TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE workauthorities_common ALTER COLUMN displayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE workauthorities_common ALTER COLUMN refname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE workauthorities_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE workauthorities_common ALTER COLUMN source TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE workauthorities_common ALTER COLUMN vocabtype TYPE character varying(1024);
+ALTER TABLE workinggroup ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE workinggroup ADD COLUMN workinggroupnote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE workinggroup ADD COLUMN workinggrouptitle character varying(1024);
+ALTER TABLE works_common DROP COLUMN IF EXISTS genre;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE works_common ALTER COLUMN inauthority TYPE character varying(1024);
+ALTER TABLE works_common DROP COLUMN IF EXISTS medium;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE works_common ALTER COLUMN refname TYPE character varying(1024);
+ALTER TABLE works_common DROP COLUMN IF EXISTS scopenote;
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE works_common ALTER COLUMN shortidentifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE works_common ADD COLUMN workhistorynote character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE works_common ADD COLUMN worktype character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE works_mmi ADD COLUMN genre character varying(1024);
+ALTER TABLE works_mmi ADD COLUMN id character varying(36) NOT NULL;
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE works_mmi ADD COLUMN medium character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termdisplayname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Set to 1024
+ALTER TABLE worktermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termlanguage TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termname TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termqualifier TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termsource TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termsourcedetail TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termsourceid TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termsourcenote TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termstatus TYPE character varying(1024);
+-- WARNING: varchar column has no maximum length.  Setting to 1024
+ALTER TABLE worktermgroup ALTER COLUMN termtype TYPE character varying(1024);

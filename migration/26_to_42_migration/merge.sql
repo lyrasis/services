@@ -2,6 +2,7 @@
 -- db2: {mmi26_default localhost 5432 csadmin cs1dn3b sslmode=disable}
 -- Run the following SQL againt db2:
 
+
 /*
 1. A "DROP TABLE" command means the table does not exist in the v4.2 deployment of MMI, but *may* need to be created in v4.2 DB schema
 2. A "CREATE TABLE" command means the table does not exist in the v2.6 deployment of MMI and needs to be in the v4.2 DB schema
@@ -9,31 +10,47 @@
 */
 
 
+
+
 -- This is part of the v2.6 MMI AcquisitionsTenant42 document type
 -- Exists in both v2.6 and v4.2, but columns are different.  We can rename v2.6 columns to match new -- v4.2 names.
 --
-ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS mmiaccessiondate; -- => maps to "accessiondate" of v4.2 schema
-ALTER TABLE acquisitions_mmi ADD COLUMN accessiondate timestamp without time zone;
-ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS acquisitionextent; -- => maps to "extent" of v4.2 schema
-ALTER TABLE acquisitions_mmi ADD COLUMN extent character varying(1024);
+--ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS mmiaccessiondate; -- => maps to "accessiondate" of v4.2 schema
+--ALTER TABLE acquisitions_mmi ADD COLUMN accessiondate timestamp without time zone;
+ALTER TABLE acquisitions_mmi RENAME COLUMN mmiaccessiondate TO accessiondate;
+
+--ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS acquisitionextent; -- => maps to "extent" of v4.2 schema
+--ALTER TABLE acquisitions_mmi ADD COLUMN extent character varying(1024);
+ALTER TABLE acquisitions_mmi RENAME COLUMN acquisitionextent TO extent;
+
 
 -- Part of the v2.6 AcquisitionTenant42 document type.
+-- Could add this as config in local-procedure-acquisition from Jesse’s 2.6 config, but... see next comment
+-- *** Only 14 Aquisition records use this field.
+-- *** May be redundant to structured date multi-valued field acquisitionDateGroupList/acquisitionDateGroup
+-- Is MMI ok with this being a structured data or does it have to be a vanilla string?
 DROP TABLE IF EXISTS acquisitions_mmi_mmiacquisitiondates;
 ALTER TABLE acquisitions_mmi_mmiacquisitiondates DROP COLUMN IF EXISTS id;
 ALTER TABLE acquisitions_mmi_mmiacquisitiondates DROP COLUMN IF EXISTS item;
 ALTER TABLE acquisitions_mmi_mmiacquisitiondates DROP COLUMN IF EXISTS pos;
 
--- Exists in both v2.6 and v4.2 schemas
-ALTER TABLE collectionspace_core ADD COLUMN refname character varying(1024);
 
 -- Exists in both v2.6 and v4.2 schemas
+-- Will this be required in v4.2?
+ALTER TABLE collectionspace_core ADD COLUMN refname character varying(1024);
+
+
+-- Exists in both v2.6 and v4.2 schemas
+-- Will this be required in v4.2?
 ALTER TABLE relations_common ADD COLUMN relationshipmetatype character varying(1024);
+
 
 -- Perhaps this v4.2 table matches the "affiliatedpersonorggroup" table in v2.6?
 CREATE TABLE affiliatedentitygroup();
 ALTER TABLE affiliatedentitygroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE affiliatedentitygroup ADD COLUMN affiliatedentity character varying(1024);
 ALTER TABLE affiliatedentitygroup ADD COLUMN affiliatedentitytype character varying(1024);
+
 
 -- This is part of the persons_mmi:affiliatedPersonOrgGroupList and PersonTenant42 doctype
 -- We should probably map this to the v4.2 "affiliatedentitygroup" table
@@ -42,18 +59,21 @@ ALTER TABLE affiliatedpersonorggroup DROP COLUMN IF EXISTS affiliatedpersonorg;
 ALTER TABLE affiliatedpersonorggroup DROP COLUMN IF EXISTS affiliatedpersonorgtype;
 ALTER TABLE affiliatedpersonorggroup DROP COLUMN IF EXISTS id;
 
---- Unused
+
+-- *** Ignore - Unused in MMI v2.6
 DROP TABLE IF EXISTS associatedtaxagroup;
 --ALTER TABLE associatedtaxagroup DROP COLUMN IF EXISTS commonname;
 --ALTER TABLE associatedtaxagroup DROP COLUMN IF EXISTS id;
 --ALTER TABLE associatedtaxagroup DROP COLUMN IF EXISTS interaction;
 --ALTER TABLE associatedtaxagroup DROP COLUMN IF EXISTS taxon;
 
+
 CREATE TABLE citationagentinfogroup();
 ALTER TABLE citationagentinfogroup ADD COLUMN agent character varying(1024);
 ALTER TABLE citationagentinfogroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE citationagentinfogroup ADD COLUMN note character varying(1024);
 ALTER TABLE citationagentinfogroup ADD COLUMN role character varying(1024);
+
 
 CREATE TABLE citationauthorities_common();
 ALTER TABLE citationauthorities_common ADD COLUMN description character varying(1024);
@@ -64,6 +84,7 @@ ALTER TABLE citationauthorities_common ADD COLUMN shortidentifier character vary
 ALTER TABLE citationauthorities_common ADD COLUMN source character varying(1024);
 ALTER TABLE citationauthorities_common ADD COLUMN vocabtype character varying(1024);
 
+
 CREATE TABLE citationpublicationinfogroup();
 ALTER TABLE citationpublicationinfogroup ADD COLUMN edition character varying(1024);
 ALTER TABLE citationpublicationinfogroup ADD COLUMN id character varying(36) NOT NULL;
@@ -71,15 +92,18 @@ ALTER TABLE citationpublicationinfogroup ADD COLUMN pages character varying(1024
 ALTER TABLE citationpublicationinfogroup ADD COLUMN publicationplace character varying(1024);
 ALTER TABLE citationpublicationinfogroup ADD COLUMN publisher character varying(1024);
 
+
 CREATE TABLE citationrelatedtermsgroup();
 ALTER TABLE citationrelatedtermsgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE citationrelatedtermsgroup ADD COLUMN relatedterm character varying(1024);
 ALTER TABLE citationrelatedtermsgroup ADD COLUMN relationtype character varying(1024);
 
+
 CREATE TABLE citationresourceidentgroup();
 ALTER TABLE citationresourceidentgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE citationresourceidentgroup ADD COLUMN resourceident character varying(1024);
 ALTER TABLE citationresourceidentgroup ADD COLUMN type character varying(1024);
+
 
 CREATE TABLE citations_common();
 ALTER TABLE citations_common ADD COLUMN citationnote character varying(1024);
@@ -87,6 +111,7 @@ ALTER TABLE citations_common ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE citations_common ADD COLUMN inauthority character varying(1024);
 ALTER TABLE citations_common ADD COLUMN refname character varying(1024);
 ALTER TABLE citations_common ADD COLUMN shortidentifier character varying(1024);
+
 
 CREATE TABLE citationtermgroup();
 ALTER TABLE citationtermgroup ADD COLUMN id character varying(36) NOT NULL;
@@ -109,14 +134,18 @@ ALTER TABLE citationtermgroup ADD COLUMN termtitle character varying(1024);
 ALTER TABLE citationtermgroup ADD COLUMN termtype character varying(1024);
 ALTER TABLE citationtermgroup ADD COLUMN termvolume character varying(1024);
 
+
 CREATE TABLE collectionobjects_fineart();
 ALTER TABLE collectionobjects_fineart ADD COLUMN cataloglevel character varying(1024);
 ALTER TABLE collectionobjects_fineart ADD COLUMN creatordescription character varying(1024);
 ALTER TABLE collectionobjects_fineart ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE collectionobjects_fineart ADD COLUMN materialtechniquedescription character varying(1024);
 
+
 -- Exists in both v2.6 and v4.2
+-- Not used in MMI?
 ALTER TABLE collectionobjects_common ADD COLUMN computedcurrentlocation character varying(1024);
+
 
 -- collectionobjects_mmi exists in both v2.6 and v4.2
 -- Some v2.6 columns can be matched to new v4.2 columns
@@ -128,40 +157,55 @@ ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS historicalnotesources; =
 ALTER TABLE collectionobjects_mmi ADD COLUMN historynotesources character varying(1024);
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS initialcatalogingcompleted; => maps to "initialcataloging" of v4.2 schema
 ALTER TABLE collectionobjects_mmi ADD COLUMN initialcataloging boolean;
-ALTER TABLE collectionobjects_mmi ADD COLUMN objectproductionentitynote character varying(1024);
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS objecttitle;
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS worktype; * References the urn:cspace:movingimage.us:vocabularies:name(artifactclassworktype) vocabulary
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS artifactclass; * References the urn:cspace:movingimage.us:vocabularies:name(artifactclassworktype)
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS caption;
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS cataloguer; * Possibly unused by v2.6 MMI
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS comments; * Possibly unused by v2.6 MMI
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS dateofcataloging; * * Possibly unused by v2.6 MMI
+ALTER TABLE collectionobjects_mmi ADD COLUMN objectproductionentitynote character varying(1024); -- used as objProdEntityNote in local-collectionobject of MMI v2.6
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS objecttitle; -- Needs to be added to MMI v4.2 config
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS worktype; --* References the urn:cspace:movingimage.us:vocabularies:name(artifactclassworktype) vocabulary
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS artifactclass; --* References the urn:cspace:movingimage.us:vocabularies:name(artifactclassworktype)
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS caption; --* Needs to be added to MMI v4.2 config
+-- Unused fields in MMI v2.6 DB
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS cataloguer; --* Possibly unused by v2.6 MMI and missing from MMI v2.6 config
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS comments; --* Possibly unused by v2.6 MMI and missing from MMI v2.6 config
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS dateofcataloging; --* Possibly unused by v2.6 MMI and missing from MMI v2.6 config
+
 
 -- Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(format) vocabulary
+-- Missing config that needs to be added to MMI v4.2
 DROP TABLE IF EXISTS collectionobjects_mmi_formats;
 ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS item;
 ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS pos;
 
+
 -- Part of the v4.2 CollectionObjectTenant42 doctype. Seems to be just a multi-valued string field.
+-- Missing config that needs to be added to MMI v4.2
 DROP TABLE IF EXISTS collectionobjects_mmi_mmiinscriptioncontents;
 ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS item;
 ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS pos;
 
+
 -- Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(material) vocabulary
+-- Missing config that needs to be added to MMI v4.2
 DROP TABLE IF EXISTS collectionobjects_mmi_mmimaterials;
 ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS item;
 ALTER TABLE collectionobjects_mmi_mmimaterials DROP COLUMN IF EXISTS pos;
 
+
 -- Part of the v4.2 CollectionObjectTenant42 doctype. References the urn:cspace:movingimage.us:vocabularies:name(technique) vocabulary
+-- Missing config that needs to be added to MMI v4.2
 DROP TABLE IF EXISTS collectionobjects_mmi_mmitechniques;
 ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS item;
 ALTER TABLE collectionobjects_mmi_mmitechniques DROP COLUMN IF EXISTS pos;
 
--- 'objprodentitygroup' this is part of collectionobjects_mmi:objProdEntityList of objProdEntityGroup
+
+-- 'objprodentitygroup' this is needed and part of collectionobjects_mmi:objProdEntityList of objProdEntityGroup
+-- This needs to be added to the mmi-collectionobject.xml configuration for MMI v4.2
+-- MMI v2.6 created this to combine objectProductionPersonGroup and objectProductionOrganizationGroup
+--     *** objectProductionPersonGroup table in MMI v2.6 is full of null values
+--     *** objectProductionPeopleGroup table in MMI v2.6 is full of null values
+--     *** objectProductionOrganizationGroup table in MMI v2.6 is full of null values
 -- Part of the CollectionObjectTenant42 document type
 -- **References urn:cspace:movingimage.us:personauthorities:name(person) authority
 -- **References urn:cspace:movingimage.us:vocabularies:name(productionrole) vocabulary
@@ -171,14 +215,25 @@ ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentity;
 ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentitynote;
 ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentityrole;
 
+
 -- 'contententitygroup' is part of collectionobjects_mmi:contentEntityList of contentEntityGroup
 -- Part of the CollectionObjectTenant42 document type
--- **This v2.6 table maps to the v4.2 table "contententitiesgroup"
+-- **This v2.6 table maps to the v4.2 table "contententitiesgroup" and should be renamed as such.
+-- Do not drop this table.
 DROP TABLE IF EXISTS contententitygroup;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententity;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententitynote;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententitytype;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS id;
+
+-- See entry for contententitygroup table above
+-- This is just a name conflict with the MMI v4.2 config.  Existing table contententitygroup can be renamed to this MMI v4.2 name contententitiesgroup
+CREATE TABLE contententitiesgroup();
+ALTER TABLE contententitiesgroup ADD COLUMN contententity character varying(1024);
+ALTER TABLE contententitiesgroup ADD COLUMN contententitynote character varying(1024);
+ALTER TABLE contententitiesgroup ADD COLUMN contententitytype character varying(1024);
+ALTER TABLE contententitiesgroup ADD COLUMN id character varying(36) NOT NULL;
+
 
 -- Exists in both v2.6 and v4.2, but unused in MMI v2.6
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldcollectiondateearliest;
@@ -195,6 +250,7 @@ ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldlocstate
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS labelfooter;
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS labelheader;
 
+-- New schema for Variable Media extension
 CREATE TABLE collectionobjects_variablemedia();
 ALTER TABLE collectionobjects_variablemedia ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE collectionobjects_variablemedia ADD COLUMN nonstandardcode character varying(1024);
@@ -215,11 +271,13 @@ ALTER TABLE collectionobjects_variablemedia_ratioformats ADD COLUMN id character
 ALTER TABLE collectionobjects_variablemedia_ratioformats ADD COLUMN item character varying(1024);
 ALTER TABLE collectionobjects_variablemedia_ratioformats ADD COLUMN pos integer;
 
+
 CREATE TABLE completenessgroup();
 ALTER TABLE completenessgroup ADD COLUMN completeness character varying(1024);
 ALTER TABLE completenessgroup ADD COLUMN completenessdate timestamp without time zone;
 ALTER TABLE completenessgroup ADD COLUMN completenessnote character varying(1024);
 ALTER TABLE completenessgroup ADD COLUMN id character varying(36) NOT NULL;
+
 
 CREATE TABLE concepts_fineart();
 ALTER TABLE concepts_fineart ADD COLUMN conceptrecordtype character varying(1024);
@@ -227,14 +285,18 @@ ALTER TABLE concepts_fineart ADD COLUMN conceptremarks character varying(1024);
 ALTER TABLE concepts_fineart ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE concepts_fineart ADD COLUMN othernameflags character varying(1024);
 
+
 -- Exists in both v2.6 and v4.2 schemas
+-- Needed in v4.2 code?
 ALTER TABLE concepttermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+
 
 CREATE TABLE conditioncheckgroup();
 ALTER TABLE conditioncheckgroup ADD COLUMN condition character varying(1024);
 ALTER TABLE conditioncheckgroup ADD COLUMN conditiondate timestamp without time zone;
 ALTER TABLE conditioncheckgroup ADD COLUMN conditionnote character varying(1024);
 ALTER TABLE conditioncheckgroup ADD COLUMN id character varying(36) NOT NULL;
+
 
 CREATE TABLE conditionchecks_common();
 ALTER TABLE conditionchecks_common ADD COLUMN conditioncheckassessmentdate timestamp without time zone;
@@ -256,32 +318,33 @@ ALTER TABLE conditionchecks_common ADD COLUMN securityrecommendations character 
 ALTER TABLE conditionchecks_common ADD COLUMN specialrequirements character varying(1024);
 ALTER TABLE conditionchecks_common ADD COLUMN storagerequirements character varying(1024);
 
-CREATE TABLE contententitiesgroup(); 
-ALTER TABLE contententitiesgroup ADD COLUMN contententity character varying(1024);
-ALTER TABLE contententitiesgroup ADD COLUMN contententitynote character varying(1024);
-ALTER TABLE contententitiesgroup ADD COLUMN contententitytype character varying(1024);
-ALTER TABLE contententitiesgroup ADD COLUMN id character varying(36) NOT NULL;
 
+-- This is part of the Variable Media extension and seems to conflict with the
+-- v2.6 MMI contentworkgroup (note the slight spelling diff) table.
 CREATE TABLE contentworksgroup();
 ALTER TABLE contentworksgroup ADD COLUMN contentwork character varying(1024);
 ALTER TABLE contentworksgroup ADD COLUMN contentworknote character varying(1024);
 ALTER TABLE contentworksgroup ADD COLUMN contentworktype character varying(1024);
 ALTER TABLE contentworksgroup ADD COLUMN id character varying(36) NOT NULL;
 
+
 CREATE TABLE digitalworksgroup();
 ALTER TABLE digitalworksgroup ADD COLUMN authoringenvironment character varying(1024);
 ALTER TABLE digitalworksgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE digitalworksgroup ADD COLUMN programminglanguage character varying(1024);
+
 
 CREATE TABLE envconditionnotegroup();
 ALTER TABLE envconditionnotegroup ADD COLUMN envconditionnote character varying(1024);
 ALTER TABLE envconditionnotegroup ADD COLUMN envconditionnotedate timestamp without time zone;
 ALTER TABLE envconditionnotegroup ADD COLUMN id character varying(36) NOT NULL;
 
+
 CREATE TABLE exhibitionpersongroup();
 ALTER TABLE exhibitionpersongroup ADD COLUMN exhibitionperson character varying(1024);
 ALTER TABLE exhibitionpersongroup ADD COLUMN exhibitionpersonrole character varying(1024);
 ALTER TABLE exhibitionpersongroup ADD COLUMN id character varying(36) NOT NULL;
+
 
 CREATE TABLE exhibitionreferencegroup();
 ALTER TABLE exhibitionreferencegroup ADD COLUMN exhibitionreference character varying(1024);
@@ -289,20 +352,24 @@ ALTER TABLE exhibitionreferencegroup ADD COLUMN exhibitionreferencenote characte
 ALTER TABLE exhibitionreferencegroup ADD COLUMN exhibitionreferencetype character varying(1024);
 ALTER TABLE exhibitionreferencegroup ADD COLUMN id character varying(36) NOT NULL;
 
+
 CREATE TABLE exhibitions_common();
 ALTER TABLE exhibitions_common ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE exhibitions_common_organizers ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE exhibitions_common_organizers ADD COLUMN pos integer;
+
 
 CREATE TABLE exhibitions_common_organizers();
 ALTER TABLE exhibitions_common_organizers ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE exhibitions_common_organizers ADD COLUMN item character varying(1024);
 ALTER TABLE exhibitions_common_organizers ADD COLUMN pos integer;
 
+
 CREATE TABLE exhibitions_common_sponsors();
 ALTER TABLE exhibitions_common_sponsors ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE exhibitions_common_sponsors ADD COLUMN item character varying(1024);
 ALTER TABLE exhibitions_common_sponsors ADD COLUMN pos integer;
+
 
 -- *** Unused
 DROP TABLE IF EXISTS fieldcolldepthgroup;
@@ -313,6 +380,7 @@ ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS notes;
 ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS qualifier;
 ALTER TABLE fieldcolldepthgroup DROP COLUMN IF EXISTS units;
 
+
 -- *** Unused
 DROP TABLE IF EXISTS fieldcollelevationgroup;
 ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS id;
@@ -322,10 +390,12 @@ ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS notes;
 ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS qualifier;
 ALTER TABLE fieldcollelevationgroup DROP COLUMN IF EXISTS units;
 
+
 CREATE TABLE filmvideocomponentsgroup();
 ALTER TABLE filmvideocomponentsgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE filmvideocomponentsgroup ADD COLUMN originalaudioformat character varying(1024);
 ALTER TABLE filmvideocomponentsgroup ADD COLUMN originalformat character varying(1024);
+
 
 ALTER TABLE fulltext ADD COLUMN binarytext_description text;
 ALTER TABLE fulltext ADD COLUMN binarytext_title text;
@@ -334,14 +404,17 @@ ALTER TABLE fulltext ADD COLUMN fulltext_title text;
 ALTER TABLE fulltext ADD COLUMN simpletext_description text;
 ALTER TABLE fulltext ADD COLUMN simpletext_title text;
 
+
 CREATE TABLE hazardgroup();
 ALTER TABLE hazardgroup ADD COLUMN hazard character varying(1024);
 ALTER TABLE hazardgroup ADD COLUMN hazarddate timestamp without time zone;
 ALTER TABLE hazardgroup ADD COLUMN hazardnote character varying(1024);
 ALTER TABLE hazardgroup ADD COLUMN id character varying(36) NOT NULL;
 
+
 -- Exists in both v2.6 and v4.2 schemas
 ALTER TABLE iptc ALTER COLUMN caption TYPE text;
+
 
 CREATE TABLE legalreqsheldgroup();
 ALTER TABLE legalreqsheldgroup ADD COLUMN id character varying(36) NOT NULL;
@@ -351,15 +424,18 @@ ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldenddate timestamp without
 ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldnumber character varying(1024);
 ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldrenewdate timestamp without time zone;
 
+
 -- Exists in both v2.6 and v4.2 schemas
 ALTER TABLE media_mmi DROP COLUMN IF EXISTS mediastatus; => maps to "status" field
 ALTER TABLE media_mmi ADD COLUMN status character varying(1024);
+
 
 -- *** Unused
 DROP TABLE IF EXISTS nh_titlegroup;
 ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS id;
 ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS item;
 ALTER TABLE nh_titlegroup DROP COLUMN IF EXISTS pos;
+
 
 -- *** Unused
 DROP TABLE IF EXISTS notes_common;
@@ -368,28 +444,41 @@ ALTER TABLE notes_common DROP COLUMN IF EXISTS content;
 ALTER TABLE notes_common DROP COLUMN IF EXISTS date;
 ALTER TABLE notes_common DROP COLUMN IF EXISTS id;
 
+
 ALTER TABLE nxp_uidseq ADD COLUMN seq_id integer NOT NULL;
 ALTER TABLE nxp_uidseq ADD COLUMN seq_index integer NOT NULL;
 ALTER TABLE nxp_uidseq ADD COLUMN seq_key character varying(255) NOT NULL;
 
+
 -- Exists in both v2.6 and v4.2 schemas
+-- Missing from v2.6 MMI config
+-- Verify that MMI 2.6 database does not have any data in this column
 ALTER TABLE persons_common DROP COLUMN IF EXISTS description;
+
 
 -- Exists in both v2.6 and v4.2
 -- Part of the PersonTenant42 documenttype
+-- Config that needs to be added to v4.2
 ALTER TABLE persons_mmi DROP COLUMN IF EXISTS lifespan;
 
+
 -- This is part of the Person document type (table contents identical to v2.6 persons_mmi_orgfunctions)
+-- Table in MMI v2.6 DB has many rows, but all rows seem to contain item=null and pos=0
+-- Missing config in v4.2 MMI
 DROP TABLE IF EXISTS persons_mmi_orgcontactnames;
 ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS id;
 ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS item;
 ALTER TABLE persons_mmi_orgcontactnames DROP COLUMN IF EXISTS pos;
 
+
 -- This is part of the Person document type (table contents identical to v2.6 persons_mmi_orgcontactnames)
+-- Table in MMI v2.6 DB has many rows, but all rows seem to contain item=null and pos=0
+-- Missing config in v4.2 MMI
 DROP TABLE IF EXISTS persons_mmi_orgfunctions;
 ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS id;
 ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS item;
 ALTER TABLE persons_mmi_orgfunctions DROP COLUMN IF EXISTS pos;
+
 
 -- Not used my MMI needed
 ALTER TABLE persons_naturalhistory DROP COLUMN IF EXISTS lifespan;
@@ -406,8 +495,10 @@ ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS id;
 ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS item;
 ALTER TABLE persons_naturalhistory_orgcontactnames DROP COLUMN IF EXISTS pos;
 
+
 -- Exists in both v2.6 and v4.2 DB schemas
 ALTER TABLE picture ALTER COLUMN caption TYPE text;
+
 
 CREATE TABLE publicitems_common();
 ALTER TABLE publicitems_common ADD COLUMN contentaccesscountlimit bigint;
@@ -421,12 +512,14 @@ ALTER TABLE publicitems_common ADD COLUMN contenturi character varying(1024);
 ALTER TABLE publicitems_common ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE publicitems_common ADD COLUMN itemnumber character varying(1024);
 
+
 CREATE TABLE registration();
 ALTER TABLE registration ADD COLUMN accepted boolean;
 ALTER TABLE registration ADD COLUMN comment character varying(1024);
 ALTER TABLE registration ADD COLUMN copyto character varying(1024);
 ALTER TABLE registration ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE registration ADD COLUMN validationmethod character varying(1024);
+
 
 CREATE TABLE registrationconfiguration();
 ALTER TABLE registrationconfiguration ADD COLUMN allowdirectvalidationforexistinguser boolean;
@@ -436,18 +529,23 @@ ALTER TABLE registrationconfiguration ADD COLUMN forcerightassignment boolean;
 ALTER TABLE registrationconfiguration ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE registrationconfiguration ADD COLUMN name character varying(1024);
 
+
 CREATE TABLE relatedconceptsgroup();
 ALTER TABLE relatedconceptsgroup ADD COLUMN conceptrelationtype character varying(1024);
 ALTER TABLE relatedconceptsgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE relatedconceptsgroup ADD COLUMN relatedconcept character varying(1024);
 
+
 -- Exists in both v2.6 and v4.2 schemas
+-- Maybe unused by MMI. Empty in MMI v2.6 database
 ALTER TABLE relatedtextresource ALTER COLUMN relatedtext TYPE text;
+
 
 CREATE TABLE salvageprioritycodegroup();
 ALTER TABLE salvageprioritycodegroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE salvageprioritycodegroup ADD COLUMN salvageprioritycode character varying(1024);
 ALTER TABLE salvageprioritycodegroup ADD COLUMN salvageprioritycodedate timestamp without time zone;
+
 
 CREATE TABLE status();
 ALTER TABLE status ADD COLUMN administrative_status character varying(1024);
@@ -457,10 +555,12 @@ ALTER TABLE status ADD COLUMN serviceid character varying(1024);
 ALTER TABLE status ADD COLUMN statusmessage character varying(1024);
 ALTER TABLE status ADD COLUMN userlogin character varying(1024);
 
+
 CREATE TABLE techassessmentgroup();
 ALTER TABLE techassessmentgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE techassessmentgroup ADD COLUMN techassessment character varying(1024);
 ALTER TABLE techassessmentgroup ADD COLUMN techassessmentdate timestamp without time zone;
+
 
 CREATE TABLE technicalchangesgroup();
 ALTER TABLE technicalchangesgroup ADD COLUMN id character varying(36) NOT NULL;
@@ -469,6 +569,7 @@ ALTER TABLE technicalchangesgroup ADD COLUMN previoussupport character varying(1
 ALTER TABLE technicalchangesgroup ADD COLUMN technicalchange character varying(1024);
 ALTER TABLE technicalchangesgroup ADD COLUMN technicalchangenote character varying(1024);
 ALTER TABLE technicalchangesgroup ADD COLUMN technicalchangereason character varying(1024);
+
 
 -- Unused and can be dropped
 DROP TABLE IF EXISTS typespecimengroup;
@@ -480,6 +581,7 @@ ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS notes;
 ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS reference;
 ALTER TABLE typespecimengroup DROP COLUMN IF EXISTS refpage;
 
+
 CREATE TABLE userinfo();
 ALTER TABLE userinfo ADD COLUMN company character varying(1024);
 ALTER TABLE userinfo ADD COLUMN email character varying(1024);
@@ -489,10 +591,12 @@ ALTER TABLE userinfo ADD COLUMN lastname character varying(1024);
 ALTER TABLE userinfo ADD COLUMN login character varying(1024);
 ALTER TABLE userinfo ADD COLUMN password character varying(1024);
 
+
 CREATE TABLE userinfo_groups();
 ALTER TABLE userinfo_groups ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE userinfo_groups ADD COLUMN item character varying(1024);
 ALTER TABLE userinfo_groups ADD COLUMN pos integer;
+
 
 CREATE TABLE valuationcontrols_common();
 ALTER TABLE valuationcontrols_common ADD COLUMN id character varying(36) NOT NULL;
@@ -503,10 +607,12 @@ ALTER TABLE valuationcontrols_common ADD COLUMN valuerenewaldate timestamp witho
 ALTER TABLE valuationcontrols_common ADD COLUMN valuesource character varying(1024);
 ALTER TABLE valuationcontrols_common ADD COLUMN valuetype character varying(1024);
 
+
 CREATE TABLE valueamounts();
 ALTER TABLE valueamounts ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE valueamounts ADD COLUMN valueamount double precision;
 ALTER TABLE valueamounts ADD COLUMN valuecurrency character varying(1024);
+
 
 CREATE TABLE venuegroup();
 ALTER TABLE venuegroup ADD COLUMN id character varying(36) NOT NULL;
@@ -516,17 +622,21 @@ ALTER TABLE venuegroup ADD COLUMN venueclosingdate timestamp without time zone;
 ALTER TABLE venuegroup ADD COLUMN venueopeningdate timestamp without time zone;
 ALTER TABLE venuegroup ADD COLUMN venueurl character varying(1024);
 
+
 CREATE TABLE visualpreferencesgroup();
 ALTER TABLE visualpreferencesgroup ADD COLUMN colorpalette character varying(1024);
 ALTER TABLE visualpreferencesgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE visualpreferencesgroup ADD COLUMN screenresolution character varying(1024);
+
 
 CREATE TABLE workinggroup();
 ALTER TABLE workinggroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE workinggroup ADD COLUMN workinggroupnote character varying(1024);
 ALTER TABLE workinggroup ADD COLUMN workinggrouptitle character varying(1024);
 
+
 -- 'works_common' exists in both v2.6 and v4.2 schemas
+-- MMI created their version of this schema before it existed in core, that’s why it looks like they modified the common schema
 -- **Ideally, this schema/table would not be modified by a deployer.  Move data to new v4.2 "works_mmi" schema
 -- **References the urn:cspace:movingimage.us:workauthorities:name(work) authority
 ALTER TABLE works_common DROP COLUMN IF EXISTS genre; -- *Doesn't appear to be used in v2.6 MMI data
@@ -535,11 +645,13 @@ ALTER TABLE works_common DROP COLUMN IF EXISTS scopenote; -- *Doesn't appear to 
 ALTER TABLE works_common ADD COLUMN workhistorynote character varying(1024);
 ALTER TABLE works_common ADD COLUMN worktype character varying(1024);
 
+
 -- Need to migrate v2.6 data from "works_common" to this table.
 CREATE TABLE works_mmi();
 ALTER TABLE works_mmi ADD COLUMN genre character varying(1024);
 ALTER TABLE works_mmi ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE works_mmi ADD COLUMN medium character varying(1024);
+
 
 -- Exists in both v2.6 and v4.2 database schemas
 ALTER TABLE worktermgroup ADD COLUMN termformatteddisplayname character varying(1024);
