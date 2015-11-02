@@ -10,25 +10,23 @@
 */
 
 
-
-
 -- This is part of the v2.6 MMI AcquisitionsTenant42 document type
 -- Exists in both v2.6 and v4.2, but columns are different.  We can rename v2.6 columns to match new -- v4.2 names.
 --
 --ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS mmiaccessiondate; -- => maps to "accessiondate" of v4.2 schema
 --ALTER TABLE acquisitions_mmi ADD COLUMN accessiondate timestamp without time zone;
-ALTER TABLE acquisitions_mmi RENAME COLUMN mmiaccessiondate TO accessiondate;
+--ALTER TABLE acquisitions_mmi RENAME COLUMN mmiaccessiondate TO accessiondate; Change MMI v4.2 config to use “acquisitionextent” instead of “extent”
 
 --ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS acquisitionextent; -- => maps to "extent" of v4.2 schema
 --ALTER TABLE acquisitions_mmi ADD COLUMN extent character varying(1024);
-ALTER TABLE acquisitions_mmi RENAME COLUMN acquisitionextent TO extent;
+--ALTER TABLE acquisitions_mmi RENAME COLUMN acquisitionextent TO extent; -- Change MMI v4.2 config to use "acquisitionextent" instead of “extent”
 
 
 -- Part of the v2.6 AcquisitionTenant42 document type.
 -- Could add this as config in local-procedure-acquisition from Jesse’s 2.6 config, but... see next comment
 -- *** Only 14 Aquisition records use this field.
 -- *** May be redundant to structured date multi-valued field acquisitionDateGroupList/acquisitionDateGroup
--- Is MMI ok with this being a structured data or does it have to be a vanilla string?
+-- Is MMI ok with this being a structured date or does it have to be a timestamp value?
 DROP TABLE IF EXISTS acquisitions_mmi_mmiacquisitiondates;
 ALTER TABLE acquisitions_mmi_mmiacquisitiondates DROP COLUMN IF EXISTS id;
 ALTER TABLE acquisitions_mmi_mmiacquisitiondates DROP COLUMN IF EXISTS item;
@@ -45,7 +43,8 @@ ALTER TABLE collectionspace_core ADD COLUMN refname character varying(1024);
 ALTER TABLE relations_common ADD COLUMN relationshipmetatype character varying(1024);
 
 
--- Perhaps this v4.2 table matches the "affiliatedpersonorggroup" table in v2.6?
+-- Perhaps this v4.2 table matches the "affiliatedpersonorggroup" table in v2.6
+-- We can change this MMI v4.2 config to use “affiliatedpersonorggroup” instead of affiliatedentitygroup
 CREATE TABLE affiliatedentitygroup();
 ALTER TABLE affiliatedentitygroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE affiliatedentitygroup ADD COLUMN affiliatedentity character varying(1024);
@@ -142,13 +141,14 @@ ALTER TABLE collectionobjects_fineart ADD COLUMN id character varying(36) NOT NU
 ALTER TABLE collectionobjects_fineart ADD COLUMN materialtechniquedescription character varying(1024);
 
 
--- Exists in both v2.6 and v4.2
--- Not used in MMI?
+-- The “collectionobjects_common” table exists in both v2.6 and v4.2
+-- Not used in MMI? What happens to this field after migration? Will this get updated?
 ALTER TABLE collectionobjects_common ADD COLUMN computedcurrentlocation character varying(1024);
 
 
 -- collectionobjects_mmi exists in both v2.6 and v4.2
 -- Some v2.6 columns can be matched to new v4.2 columns
+-- Consider changing the MMI v4.2 extension fields config to match the v2.6 config.
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS additionalresearchrequired; => maps to "additionalresearch" of v4.2 schema
 ALTER TABLE collectionobjects_mmi ADD COLUMN additionalresearch boolean;
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS approvedbycurator; => maps to "curatorapproved" of v4.2 schema
@@ -158,9 +158,10 @@ ALTER TABLE collectionobjects_mmi ADD COLUMN historynotesources character varyin
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS initialcatalogingcompleted; => maps to "initialcataloging" of v4.2 schema
 ALTER TABLE collectionobjects_mmi ADD COLUMN initialcataloging boolean;
 ALTER TABLE collectionobjects_mmi ADD COLUMN objectproductionentitynote character varying(1024); -- used as objProdEntityNote in local-collectionobject of MMI v2.6
+--
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS objecttitle; -- Needs to be added to MMI v4.2 config
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS worktype; --* References the urn:cspace:movingimage.us:vocabularies:name(artifactclassworktype) vocabulary
-ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS artifactclass; --* References the urn:cspace:movingimage.us:vocabularies:name(artifactclassworktype)
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS worktype; --* References the urn:cspace:movingimage.us:vocabularies:name(artifactclassworktype) vocabulary/term-list
+ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS artifactclass; --* References the urn:cspace:movingimage.us:vocabularies:name(artifactclassworktype) vocabulary/term-list
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS caption; --* Needs to be added to MMI v4.2 config
 -- Unused fields in MMI v2.6 DB
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS cataloguer; --* Possibly unused by v2.6 MMI and missing from MMI v2.6 config
@@ -173,11 +174,12 @@ ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS dateofcataloging; --* Po
 DROP TABLE IF EXISTS collectionobjects_mmi_formats;
 ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS item;
-ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS pos;
+ALTER TABLE collectionobjects_mmi_formats DROP COLUMN IF EXISTS pos; 
 
 
 -- Part of the v4.2 CollectionObjectTenant42 doctype. Seems to be just a multi-valued string field.
 -- Missing config that needs to be added to MMI v4.2
+-- This could map to textualInscriptionGroupList/textualInscriptionGroup of the base CollectionObject field “inscriptionContent”
 DROP TABLE IF EXISTS collectionobjects_mmi_mmiinscriptioncontents;
 ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS id;
 ALTER TABLE collectionobjects_mmi_mmiinscriptioncontents DROP COLUMN IF EXISTS item;
@@ -219,6 +221,7 @@ ALTER TABLE objprodentitygroup DROP COLUMN IF EXISTS objprodentityrole;
 -- 'contententitygroup' is part of collectionobjects_mmi:contentEntityList of contentEntityGroup
 -- Part of the CollectionObjectTenant42 document type
 -- **This v2.6 table maps to the v4.2 table "contententitiesgroup" and should be renamed as such.
+-- **Changing the MMI v4.2 config to match this older MMI v2.6 name.
 -- Do not drop this table.
 DROP TABLE IF EXISTS contententitygroup;
 ALTER TABLE contententitygroup DROP COLUMN IF EXISTS contententity;
@@ -288,6 +291,7 @@ ALTER TABLE concepts_fineart ADD COLUMN othernameflags character varying(1024);
 
 -- Exists in both v2.6 and v4.2 schemas
 -- Needed in v4.2 code?
+-- This table seems unused in MMI v2.6 database
 ALTER TABLE concepttermgroup ADD COLUMN termformatteddisplayname character varying(1024);
 
 
@@ -320,7 +324,7 @@ ALTER TABLE conditionchecks_common ADD COLUMN storagerequirements character vary
 
 
 -- This is part of the Variable Media extension and seems to conflict with the
--- v2.6 MMI contentworkgroup (note the slight spelling diff) table.
+-- v2.6 MMI contentworkgroup (note the slight spelling diff) table.  “contentworkgroup” is a cataloging extension of MMI v2.6
 CREATE TABLE contentworksgroup();
 ALTER TABLE contentworksgroup ADD COLUMN contentwork character varying(1024);
 ALTER TABLE contentworksgroup ADD COLUMN contentworknote character varying(1024);
@@ -426,6 +430,7 @@ ALTER TABLE legalreqsheldgroup ADD COLUMN legalreqsheldrenewdate timestamp witho
 
 
 -- Exists in both v2.6 and v4.2 schemas
+-- Since this is an extension to media, we could change the config to use “mediastatus” to match v2.6 config
 ALTER TABLE media_mmi DROP COLUMN IF EXISTS mediastatus; => maps to "status" field
 ALTER TABLE media_mmi ADD COLUMN status character varying(1024);
 
@@ -655,3 +660,4 @@ ALTER TABLE works_mmi ADD COLUMN medium character varying(1024);
 
 -- Exists in both v2.6 and v4.2 database schemas
 ALTER TABLE worktermgroup ADD COLUMN termformatteddisplayname character varying(1024);
+
