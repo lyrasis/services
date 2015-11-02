@@ -1,14 +1,3 @@
--- This is part of the v2.6 MMI AcquisitionsTenant42 document type
--- Exists in both v2.6 and v4.2, but columns are different.  We can rename v2.6 columns to match new -- v4.2 names.
---
---ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS mmiaccessiondate; -- => maps to "accessiondate" of v4.2 schema
---ALTER TABLE acquisitions_mmi ADD COLUMN accessiondate timestamp without time zone;
-ALTER TABLE acquisitions_mmi RENAME COLUMN mmiaccessiondate TO accessiondate;
-
---ALTER TABLE acquisitions_mmi DROP COLUMN IF EXISTS acquisitionextent; -- => maps to "extent" of v4.2 schema
---ALTER TABLE acquisitions_mmi ADD COLUMN extent character varying(1024);
-ALTER TABLE acquisitions_mmi RENAME COLUMN acquisitionextent TO extent;
-
 -- Exists in both v2.6 and v4.2 schemas
 -- Will this be required in v4.2?
 ALTER TABLE collectionspace_core ADD COLUMN refname character varying(1024);
@@ -17,18 +6,15 @@ ALTER TABLE collectionspace_core ADD COLUMN refname character varying(1024);
 -- Will this be required in v4.2?
 ALTER TABLE relations_common ADD COLUMN relationshipmetatype character varying(1024);
 
--- This is part of the persons_mmi:affiliatedPersonOrgGroupList and PersonTenant42 doctype
--- We should probably map this to the v4.2 "affiliatedentitygroup" table
-ALTER TABLE affiliatedpersonorggroup RENAME COLUMN IF EXISTS affiliatedentity;
-ALTER TABLE affiliatedpersonorggroup DROP COLUMN IF EXISTS affiliatedentitytype;
-ALTER TABLE affiliatedpersonorggroup RENAME TO affiliatedentitygroup;
+-- Because of a conflict with the Variable Media schema extension "contentWorksGroupList/contentWorksGroup",
+-- we're going to rename this table to keep the MMI v2.6 data intact.
+ALTER TABLE contentworkgroup RENAME TO mmicontentworksgroup;
 
 CREATE TABLE citationagentinfogroup();
 ALTER TABLE citationagentinfogroup ADD COLUMN agent character varying(1024);
 ALTER TABLE citationagentinfogroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE citationagentinfogroup ADD COLUMN note character varying(1024);
 ALTER TABLE citationagentinfogroup ADD COLUMN role character varying(1024);
-
 
 CREATE TABLE citationauthorities_common();
 ALTER TABLE citationauthorities_common ADD COLUMN description character varying(1024);
@@ -39,7 +25,6 @@ ALTER TABLE citationauthorities_common ADD COLUMN shortidentifier character vary
 ALTER TABLE citationauthorities_common ADD COLUMN source character varying(1024);
 ALTER TABLE citationauthorities_common ADD COLUMN vocabtype character varying(1024);
 
-
 CREATE TABLE citationpublicationinfogroup();
 ALTER TABLE citationpublicationinfogroup ADD COLUMN edition character varying(1024);
 ALTER TABLE citationpublicationinfogroup ADD COLUMN id character varying(36) NOT NULL;
@@ -47,18 +32,15 @@ ALTER TABLE citationpublicationinfogroup ADD COLUMN pages character varying(1024
 ALTER TABLE citationpublicationinfogroup ADD COLUMN publicationplace character varying(1024);
 ALTER TABLE citationpublicationinfogroup ADD COLUMN publisher character varying(1024);
 
-
 CREATE TABLE citationrelatedtermsgroup();
 ALTER TABLE citationrelatedtermsgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE citationrelatedtermsgroup ADD COLUMN relatedterm character varying(1024);
 ALTER TABLE citationrelatedtermsgroup ADD COLUMN relationtype character varying(1024);
 
-
 CREATE TABLE citationresourceidentgroup();
 ALTER TABLE citationresourceidentgroup ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE citationresourceidentgroup ADD COLUMN resourceident character varying(1024);
 ALTER TABLE citationresourceidentgroup ADD COLUMN type character varying(1024);
-
 
 CREATE TABLE citations_common();
 ALTER TABLE citations_common ADD COLUMN citationnote character varying(1024);
@@ -66,7 +48,6 @@ ALTER TABLE citations_common ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE citations_common ADD COLUMN inauthority character varying(1024);
 ALTER TABLE citations_common ADD COLUMN refname character varying(1024);
 ALTER TABLE citations_common ADD COLUMN shortidentifier character varying(1024);
-
 
 CREATE TABLE citationtermgroup();
 ALTER TABLE citationtermgroup ADD COLUMN id character varying(36) NOT NULL;
@@ -89,43 +70,23 @@ ALTER TABLE citationtermgroup ADD COLUMN termtitle character varying(1024);
 ALTER TABLE citationtermgroup ADD COLUMN termtype character varying(1024);
 ALTER TABLE citationtermgroup ADD COLUMN termvolume character varying(1024);
 
-
 CREATE TABLE collectionobjects_fineart();
 ALTER TABLE collectionobjects_fineart ADD COLUMN cataloglevel character varying(1024);
 ALTER TABLE collectionobjects_fineart ADD COLUMN creatordescription character varying(1024);
 ALTER TABLE collectionobjects_fineart ADD COLUMN id character varying(36) NOT NULL;
 ALTER TABLE collectionobjects_fineart ADD COLUMN materialtechniquedescription character varying(1024);
 
--- Exists in both v2.6 and v4.2
--- Not used in MMI?
+-- The “collectionobjects_common” table exists in both v2.6 and v4.2
+-- Not used in MMI? What happens to this field after migration? Will this get updated?
 ALTER TABLE collectionobjects_common ADD COLUMN computedcurrentlocation character varying(1024);
 
--- collectionobjects_mmi exists in both v2.6 and v4.2
--- Some v2.6 columns can be matched to new v4.2 columns
--- ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS additionalresearchrequired; => maps to "additionalresearch" of v4.2 schema
--- ALTER TABLE collectionobjects_mmi ADD COLUMN additionalresearch boolean;
-ALTER TABLE collectionobjects_mmi RENAME COLUMN additionalresearchrequired TO additionalresearch;
-
--- ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS approvedbycurator; => maps to "curatorapproved" of v4.2 schema
--- ALTER TABLE collectionobjects_mmi ADD COLUMN curatorapproved boolean;
-ALTER TABLE collectionobjects_mmi RENAME COLUMN approvedbycurator to curatorapproved;
-
--- ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS historicalnotesources; => maps to "historynotesources" of v4.2 schema
--- ALTER TABLE collectionobjects_mmi ADD COLUMN historynotesources character varying(1024);
-ALTER TABLE collectionobjects_mmi RENAME COLUMN historicalnotesources TO historynotesources;
-
--- ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS initialcatalogingcompleted; => maps to "initialcataloging" of v4.2 schema
--- ALTER TABLE collectionobjects_mmi ADD COLUMN initialcataloging boolean;
-ALTER TABLE collectionobjects_mmi RENAME COLUMN initialcatalogingcompleted TO initialcataloging;
+-- Added by Chad for MMI v4.2 config, but not sure why.
 ALTER TABLE collectionobjects_mmi ADD COLUMN objectproductionentitynote character varying(1024); -- used as objProdEntityNote in local-collectionobject of MMI v2.6
 
 /* Can be dropped because they are unused in v2.6 MMI */
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS cataloguer; --* Unused by v2.6 MMI and missing from MMI v2.6 config -confirmed with 'select count(*) from collectionobjects_mmi where cataloguer is not null;'
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS comments; --* Unused by v2.6 MMI and missing from MMI v2.6 config -confirmed with 'select count(*) from collectionobjects_mmi where comments is not null;'
 ALTER TABLE collectionobjects_mmi DROP COLUMN IF EXISTS dateofcataloging; --* Possibly unused by v2.6 MMI and missing from MMI v2.6 config -confirmed with 'select count(*) from collectionobjects_mmi where dateofcataloging is not null;'
-
-/* Contains data from MMI v2.6 DB, but table has been renamed in MMI v4.2 config */
-ALTER TABLE contententitygroup RENAME TO contententitiesgroup;
 
 -- Exists in both v2.6 and v4.2, but unused in MMI v2.6
 -- Updated since v2.6 to fewer columns.
@@ -142,7 +103,6 @@ ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldloclongd
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS fieldlocstate;
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS labelfooter;
 ALTER TABLE collectionobjects_naturalhistory DROP COLUMN IF EXISTS labelheader;
-
 
 -- New schema for Variable Media extension
 CREATE TABLE collectionobjects_variablemedia();
