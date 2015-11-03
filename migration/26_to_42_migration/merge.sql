@@ -644,10 +644,10 @@ ALTER TABLE workinggroup ADD COLUMN workinggrouptitle character varying(1024);
 -- MMI created their version of this schema before it existed in core, that’s why it looks like they modified the common schema
 -- **Ideally, this schema/table would not be modified by a deployer.  Move data to new v4.2 "works_mmi" schema
 -- **References the urn:cspace:movingimage.us:workauthorities:name(work) authority
-ALTER TABLE works_common DROP COLUMN IF EXISTS genre; -- *Doesn't appear to be used in v2.6 MMI data
+ALTER TABLE works_common DROP COLUMN IF EXISTS genre;
 ALTER TABLE works_common DROP COLUMN IF EXISTS medium; -- *References the urn:cspace:movingimage.us:vocabularies:name(workmedium) vocabulary
-ALTER TABLE works_common DROP COLUMN IF EXISTS scopenote; -- *Doesn't appear to be used in v2.6 MMI data
-ALTER TABLE works_common ADD COLUMN workhistorynote character varying(1024);
+ALTER TABLE works_common DROP COLUMN IF EXISTS scopenote; -- *Doesn't appear to be used in v2.6 MMI data -just null or empty rows.  Could map to v4.2 workhistorynote
+ALTER TABLE works_common ADD COLUMN workhistorynote character varying(1024); -- Could rename v2.6 scopenote to workhistorynote
 ALTER TABLE works_common ADD COLUMN worktype character varying(1024);
 
 
