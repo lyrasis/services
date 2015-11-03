@@ -171,3 +171,6 @@ ALTER TABLE conditionchecks_common ADD COLUMN packingrecommendations character v
 ALTER TABLE conditionchecks_common ADD COLUMN securityrecommendations character varying(1024);
 ALTER TABLE conditionchecks_common ADD COLUMN specialrequirements character varying(1024);
 ALTER TABLE conditionchecks_common ADD COLUMN storagerequirements character varying(1024);
+
+-- Mapping v2.6 MMI scopenote to v4.2 workhistorynote
+ALTER TABLE works_common RENAME COLUMN scopenote TO workhistorynote;
