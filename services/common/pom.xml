@@ -245,6 +245,11 @@
 			<version>${nuxeo.platform.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.nuxeo</groupId>
+			<artifactId>nuxeo-reindex-fulltext</artifactId>
+			<version>${nuxeo.platform.version}</version>
+		</dependency>		
+		<dependency>
 			<groupId>org.nuxeo.ecm.platform</groupId>
 			<artifactId>nuxeo-platform-mimetype-api</artifactId>
 			<version>${nuxeo.platform.version}</version>

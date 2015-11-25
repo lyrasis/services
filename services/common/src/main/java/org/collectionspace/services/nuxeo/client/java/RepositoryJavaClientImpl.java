@@ -71,7 +71,9 @@ import org.apache.chemistry.opencmis.commons.enums.CmisVersion;
 import org.apache.chemistry.opencmis.commons.server.CallContext;
 import org.apache.chemistry.opencmis.server.impl.CallContextImpl;
 import org.apache.chemistry.opencmis.server.shared.ThresholdOutputStreamFactory;
+import org.mortbay.log.Log;
 import org.nuxeo.common.utils.IdUtils;
+import org.nuxeo.ecm.core.ReindexFulltextRoot;
 import org.nuxeo.ecm.core.api.ClientException;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentModelList;
@@ -245,6 +247,17 @@ public class RepositoryJavaClientImpl implements RepositoryClient<PoxPayloadIn, 
         try {
             handler.prepare(Action.GET);
             repoSession = getRepositorySession(ctx);
+            
+            //
+            // Code to test reindex call to Nuxeo
+            //
+            if (id.equals("0")) {
+            	CSReindexFulltextRoot reindex = new CSReindexFulltextRoot(repoSession);
+            	Log.info("Starting reindex of Nuxeo full text index.");
+                String status = reindex.reindexFulltext(0, 0);
+                Log.info("Finished reindex of Nuxeo full text index: " + status);
+            }
+            
             DocumentRef docRef = NuxeoUtils.createPathRef(ctx, id);
             DocumentModel docModel = null;
             try {
