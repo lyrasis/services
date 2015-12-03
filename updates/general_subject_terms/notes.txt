@@ -1,0 +1,42 @@
+associated = 3d442f94-7919-40b3-a6af
+classification = af6cfbca-d63d-4a32-a01d
+
+# Get the list of refnames that need to be updated
+select refname from concepts_common where inauthority = '3d442f94-7919-40b3-a6af';
+
+# Escape the single quote character in the refnames
+# For example, convert this
+# urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept11449032782262)'AS_Concept1'
+#    to
+# urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept11449032782262)''AS_Concept1''
+
+# refnames to update
+urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept11449032782262)''AS_Concept1''
+urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept21449032818869)''AS_Concept2''
+urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept31449032831738)''AS_Concept3''
+
+# Update the refnames to use the "classification" short ID by replacing "concept" with "classification" in
+# the refname string.
+update concepts_common set refname = 'newRefName' where refname = 'oldRefName';
+
+update concepts_common set refname = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(classification):item:name(AS_Concept11449032782262)''AS_Concept1''' where refname = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept11449032782262)''AS_Concept1''';
+update concepts_common set refname = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(classification):item:name(AS_Concept21449032818869)''AS_Concept2''' where refname = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept21449032818869)''AS_Concept2''';
+update concepts_common set refname = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(classification):item:name(AS_Concept31449032831738)''AS_Concept3''' where refname = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept31449032831738)''AS_Concept3''';
+
+# Update the 'inauthority' field to be the new "classification" authority
+update concepts_common set inauthority = 'af6cfbca-d63d-4a32-a01d' where inauthority = '3d442f94-7919-40b3-a6af';
+
+# Select all cataloging records' contentconcepts refnames that need to be updated to use "classification" short ID
+select distinct item from collectionobjects_common_contentconcepts where item ILIKE '%(concept)%';
+
+# refnames to update
+urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept11449032782262)'AS_Concept1'
+urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept21449032818869)'AS_Concept2'
+urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept31449032831738)'AS_Concept3'
+
+# Update all cataloging records' contentconcepts refnames to use new refnames
+update collectionobjects_common_contentconcepts set item = 'newRefName' where item = 'oldRefName';
+
+update collectionobjects_common_contentconcepts set item = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(classification):item:name(AS_Concept11449032782262)''AS_Concept1''' where item = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept11449032782262)''AS_Concept1''';
+update collectionobjects_common_contentconcepts set item = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(classification):item:name(AS_Concept21449032818869)''AS_Concept2''' where item = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept21449032818869)''AS_Concept2''';
+update collectionobjects_common_contentconcepts set item = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(classification):item:name(AS_Concept31449032831738)''AS_Concept3''' where item = 'urn:cspace:collection.watermillcenter.org:conceptauthorities:name(concept):item:name(AS_Concept31449032831738)''AS_Concept3''';
