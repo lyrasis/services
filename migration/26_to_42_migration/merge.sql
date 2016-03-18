@@ -1004,13 +1004,3 @@ ALTER TABLE usagegroup ALTER COLUMN usagenote TYPE character varying;
 -- WARNING: This type change may not work well: (text to character varying).
 -- WARNING: varchar column has no maximum length.  Setting to 1024
 ALTER TABLE view ALTER COLUMN title TYPE character varying;
-
--- Update migratedEntityGroup's column migratedentitytype with prettier valuesource
-update migratedentitygroup set migratedentitytype='Artist' where migratedentitytype='artist';
-update migratedentitygroup set migratedentitytype='Director' where migratedentitytype='director';
-update migratedentitygroup set migratedentitytype='Publishing company' where migratedentitytype='publishingcompany';
-update migratedentitygroup set migratedentitytype='Developer' where migratedentitytype='developer';
-update migratedentitygroup set migratedentitytype='Production company' where migratedentitytype='productioncompany';
-update migratedentitygroup set migratedentitytype='Network/cable service' where migratedentitytype='networkcableservice';
-update migratedentitygroup set migratedentitytype='Distribution company' where migratedentitytype='distributioncompany';
-
