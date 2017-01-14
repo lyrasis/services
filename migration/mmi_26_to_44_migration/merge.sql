@@ -28,8 +28,8 @@ ALTER TABLE relatedtextresource ALTER COLUMN relatedtext TYPE text;
 -- Will this be required in v4.2?
 ALTER TABLE relations_common ADD COLUMN relationshipmetatype character varying;
 
--- Because of a conflict with the Variable Media schema extension "contentWorksGroupList/contentWorksGroup",
--- we're going to rename this table to keep the MMI v2.6 data intact.
+-- Because of a conflict with the Variable Media profile schema extension "contentWorksGroupList/contentWorksGroup",
+-- we're going to rename this table (an original MMI v2.6 table) to keep its data intact.
 ALTER TABLE contentworkgroup RENAME TO mmicontentworkgroup;
 
 -- Should we create this table?  It's part of the standard v4.x schema, but not used by MMI
