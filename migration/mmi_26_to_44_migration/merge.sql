@@ -30,17 +30,17 @@ ALTER TABLE relations_common ADD COLUMN relationshipmetatype character varying;
 
 -- Because of a conflict with the Variable Media profile schema extension "contentWorksGroupList/contentWorksGroup",
 -- we're going to rename this table (an original MMI v2.6 table) to keep its data intact.
-ALTER TABLE contentworkgroup RENAME TO mmicontentworkgroup;
+-- ALTER TABLE contentworkgroup RENAME TO mmicontentworkgroup;
 
 -- Should we create this table?  It's part of the standard v4.x schema, but not used by MMI
-CREATE TABLE contentworksgroup();
-ALTER TABLE contentworksgroup OWNER TO nuxeo_mmi;
-GRANT ALL ON TABLE contentworksgroup TO nuxeo_mmi;
-GRANT SELECT ON TABLE contentworksgroup TO reader_mmi;
-ALTER TABLE contentworksgroup ADD COLUMN contentwork character varying;
-ALTER TABLE contentworksgroup ADD COLUMN contentworknote character varying;
-ALTER TABLE contentworksgroup ADD COLUMN contentworktype character varying;
-ALTER TABLE contentworksgroup ADD COLUMN id character varying(36) NOT NULL;
+--CREATE TABLE contentworksgroup();
+--ALTER TABLE contentworksgroup OWNER TO nuxeo_mmi;
+--GRANT ALL ON TABLE contentworksgroup TO nuxeo_mmi;
+--GRANT SELECT ON TABLE contentworksgroup TO reader_mmi;
+--ALTER TABLE contentworksgroup ADD COLUMN contentwork character varying;
+--ALTER TABLE contentworksgroup ADD COLUMN contentworknote character varying;
+--ALTER TABLE contentworksgroup ADD COLUMN contentworktype character varying;
+--ALTER TABLE contentworksgroup ADD COLUMN id character varying(36) NOT NULL;
 
 
 CREATE TABLE citationagentinfogroup();
