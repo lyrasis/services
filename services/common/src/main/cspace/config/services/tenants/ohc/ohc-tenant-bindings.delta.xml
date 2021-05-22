@@ -119,7 +119,13 @@
 							"properties": {
 								"objectName": {
 									"type": "keyword",
-									"copy_to": "all_field"
+									"copy_to": "all_field",
+									"fields": {
+										"displayName": {
+											"type": "keyword",
+											"normalizer": "refname_displayname_normalizer"
+										}
+									}
 								}
 							}
 						},
