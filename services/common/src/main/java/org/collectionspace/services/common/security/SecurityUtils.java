@@ -38,6 +38,7 @@ import org.collectionspace.services.config.AssertionAttributeProbeType;
 import org.collectionspace.services.config.AssertionNameIDProbeType;
 import org.collectionspace.services.config.AssertionProbesType;
 import org.collectionspace.services.config.service.ServiceBindingType;
+import org.apache.commons.lang3.StringUtils;
 import org.collectionspace.authentication.AuthN;
 import org.collectionspace.authentication.spring.CSpacePasswordEncoderFactory;
 
@@ -346,6 +347,8 @@ public class SecurityUtils {
      * Retrieve the possible CSpace usernames from a SAML assertion.
      */
     public static List<String> findSamlAssertionCandidateUsernames(Assertion assertion, AssertionProbesType assertionProbes) {
+        printAssertion(assertion);
+
         List<String> candidateUsernames = new ArrayList<>();
         List<Object> probes = null;
 
@@ -404,5 +407,30 @@ public class SecurityUtils {
         }
 
         return values;
+    }
+
+    private static void printAssertion(Assertion assertion) {
+        System.out.println("Assertion ID=" + assertion.getID());
+        System.out.println("  NameID=" + assertion.getSubject().getNameID().getValue());
+
+        for (AttributeStatement statement : assertion.getAttributeStatements()) {
+            for (Attribute attribute : statement.getAttributes()) {
+                String name = attribute.getName();
+                List<String> values = new ArrayList<>();
+                List<XMLObject> attributeValues = attribute.getAttributeValues();
+
+                if (attributeValues != null) {
+                    for (XMLObject value : attributeValues) {
+                        if (value instanceof XSString) {
+                            XSString stringValue = (XSString) value;
+
+                            values.add(stringValue.getValue());
+                        }
+                    }
+                }
+
+                System.out.println("  Attribute name=" + name + " value=" + StringUtils.join(values, ","));
+            }
+        }
     }
 }
