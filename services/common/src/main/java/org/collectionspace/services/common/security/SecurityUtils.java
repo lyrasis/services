@@ -23,7 +23,9 @@
 package org.collectionspace.services.common.security;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.net.URISyntaxException;
 import java.util.StringTokenizer;
 
@@ -346,10 +348,8 @@ public class SecurityUtils {
     /*
      * Retrieve the possible CSpace usernames from a SAML assertion.
      */
-    public static List<String> findSamlAssertionCandidateUsernames(Assertion assertion, AssertionProbesType assertionProbes) {
-        printAssertion(assertion);
-
-        List<String> candidateUsernames = new ArrayList<>();
+    public static Set<String> findSamlAssertionCandidateUsernames(Assertion assertion, AssertionProbesType assertionProbes) {
+        Set<String> candidateUsernames = new LinkedHashSet<>();
         List<Object> probes = null;
 
         if (assertionProbes != null) {
@@ -364,7 +364,7 @@ public class SecurityUtils {
             if (probe instanceof AssertionNameIDProbeType) {
                 String subjectNameID = assertion.getSubject().getNameID().getValue();
 
-                if (subjectNameID != null && subjectNameID.length() > 0) {
+                if (subjectNameID != null && subjectNameID.contains("@")) {
                     candidateUsernames.add(subjectNameID);
                 }
             } else if (probe instanceof AssertionAttributeProbeType) {
@@ -396,7 +396,7 @@ public class SecurityUtils {
                                 XSString stringValue = (XSString) value;
                                 String candidateValue = stringValue.getValue();
 
-                                if (candidateValue != null && candidateValue.length() > 0) {
+                                if (candidateValue != null && candidateValue.contains("@")) {
                                     values.add(candidateValue);
                                 }
                             }
@@ -407,30 +407,5 @@ public class SecurityUtils {
         }
 
         return values;
-    }
-
-    private static void printAssertion(Assertion assertion) {
-        System.out.println("Assertion ID=" + assertion.getID());
-        System.out.println("  NameID=" + assertion.getSubject().getNameID().getValue());
-
-        for (AttributeStatement statement : assertion.getAttributeStatements()) {
-            for (Attribute attribute : statement.getAttributes()) {
-                String name = attribute.getName();
-                List<String> values = new ArrayList<>();
-                List<XMLObject> attributeValues = attribute.getAttributeValues();
-
-                if (attributeValues != null) {
-                    for (XMLObject value : attributeValues) {
-                        if (value instanceof XSString) {
-                            XSString stringValue = (XSString) value;
-
-                            values.add(stringValue.getValue());
-                        }
-                    }
-                }
-
-                System.out.println("  Attribute name=" + name + " value=" + StringUtils.join(values, ","));
-            }
-        }
     }
 }
