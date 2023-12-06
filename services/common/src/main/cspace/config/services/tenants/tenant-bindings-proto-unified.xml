@@ -1220,6 +1220,24 @@
 								}
 							}
 						},
+						"collectionspace_denorm:materialGroupList": {
+							"type": "object",
+							"properties": {
+								"material": {
+									"type": "keyword",
+									"copy_to": "all_field"
+								}
+							}
+						},
+						"collectionspace_denorm:objectNameList": {
+							"type": "object",
+							"properties": {
+								"objectName": {
+									"type": "keyword",
+									"copy_to": "all_field"
+								}
+							}
+						},
 
 						"collectionobjects_common:objectNumber": {
 							"type": "keyword",
